@@ -1,0 +1,34 @@
+[
+    {
+        "word" : "CHICKEN",
+        "category" : "Animals"
+    },
+    {
+        "word" : "DOG",
+        "category" : "Animals"
+    },
+    {
+        "word" : "CAT",
+        "category" : "Animals"
+    },
+    {
+        "word" : "WOLF",
+        "category" : "Animals"
+    },
+    {
+        "word" : "SOCCER",
+        "category" : "Sports"
+    },
+    {
+        "word" : "BASEBALL",
+        "category" : "Sports"
+    },
+    {
+        "word" : "BASKETBALL",
+        "category" : "Sports"
+    },
+    {
+        "word" : "VOLLEYBALL",
+        "category" : "Sports"
+    }
+]
