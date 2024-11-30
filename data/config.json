@@ -1,0 +1,77 @@
+{
+    "generalSettings":{
+        "resolution":{
+            "height": 640,
+            "width": 450,
+            "fullscreen": false
+        },
+        "sound":{
+            "volume":50
+        },
+        "gameplay":{
+            "language": "en"
+        }
+    },
+    "configurationGame":[
+        {
+            "challenges":[
+                {
+                    "title":"moreLetters",
+                    "dificulty":"normal",
+                    "description":"algo pro"
+                }
+            ],
+            "categoryGames": [
+                {
+                    "category":"Letters",
+                    "status":true,
+                    "description":"",
+                    "subCategories":[
+                        {
+                            "title": "Animals",
+                            "image":"../assets/images/letters/subCategories/animals.webp",
+                            "words": "./letters/subCategories/animals.json",
+                            "status": true
+                        },
+                        {
+                            "title": "Planets",
+                            "image":"../assets/images/letters/subCategories/planets.png",
+                            "words": "./letters/subCategories/planets.json",
+                            "status": true
+                        },
+                        {
+                            "title": "Forms",
+                            "image":"../assets/images/letters/subCategories/forms.png",
+                            "words": "./letters/subCategories/forms.json",
+                            "status": true
+                        },
+                        {
+                            "title": "Fruits",
+                            "image":"../assets/images/letters/subCategories/fruits.png",
+                            "words": "./letters/subCategories/fruits.json",
+                            "status": true
+                        },
+                        {
+                            "title": "Weather",
+                            "image":"../assets/images/letters/subCategories/weather.png",
+                            "words": "./letters/subCategories/wheater.json",
+                            "status": true
+                        }
+                    ]
+                },
+                {
+                    "category":"Numbers",
+                    "status":false,
+                    "description":"",
+                    "subCategories":[{}]
+                },
+                {
+                    "category":"Visuals",
+                    "status":true,
+                    "description":"",
+                    "subCategories":[{}]
+                }
+            ]
+        }
+    ]
+}
