@@ -67,7 +67,7 @@
                 },
                 {
                     "category":"Visuals",
-                    "status":true,
+                    "status":false,
                     "description":"",
                     "subCategories":[{}]
                 }
