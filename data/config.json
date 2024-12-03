@@ -1,0 +1,193 @@
+{
+    "generalSettings":{
+        "resolution":{
+            "height": 640,
+            "width": 450,
+            "fullscreen": false
+        },
+        "sound":{
+            "volume":50
+        },
+        "gameplay":{
+            "language": "en"
+        }
+    },
+    "configurationGame":[
+        {
+            "challenges":[
+                {
+                    "title":"moreLetters",
+                    "dificulty":"normal",
+                    "description":"algo pro"
+                }
+            ],
+            "categoryGames": [
+                {
+                    "category":"Letters",
+                    "status":true,
+                    "description":"",
+                    "subCategories":[
+                        {
+                            "title": "Animals",
+                            "image":"../assets/images/letters/subCategories/animals.webp",
+                            "config":[
+                                {
+                                    "fullWord":false,
+                                    "difficulty":"easy",
+                                    "timeRemaining":30,
+                                    "random":false,
+                                    "bonusWord":5,
+                                    "point":1,
+                                    "cursedWord":1
+                                }
+                            ],
+                            "words": [
+                                "CHICKEM",
+                                "HORSE",
+                                "DOG",
+                                "FOX",
+                                "RACCOON",
+                                "AXOLOTL",
+                                "RAT"
+                            ],
+                            "status": true
+                        },
+                        {
+                            "title": "Planets",
+                            "image":"../assets/images/letters/subCategories/planets.png",
+                            "config":[
+                                {
+                                    "fullWord":false,
+                                    "difficulty":"hard",
+                                    "timeRemaining":30,
+                                    "random":false,
+                                    "bonusWord":5,
+                                    "point":1,
+                                    "cursedWord":1
+                                }
+                            ],
+                            "words": [
+                                "MERCURY",
+                                "VENUS",
+                                "EARTH",
+                                "MARS",
+                                "JUPITER",
+                                "SATURN",
+                                "URANUS",
+                                "NEPTUNE"
+                            ],
+                            "status": true
+                        },
+                        {
+                            "title": "Forms",
+                            "image":"../assets/images/letters/subCategories/forms.png",
+                            "config":[
+                                {
+                                    "fullWord":false,
+                                    "difficulty":"hard",
+                                    "timeRemaining":30,
+                                    "random":false,
+                                    "bonusWord":5,
+                                    "point":1,
+                                    "cursedWord":1
+                                }
+                            ],
+                            "words": [
+                                "CIRCLE",
+                                "SQUARE",
+                                "RECTANGULE",
+                                "OVAL",
+                                "PENTAGON",
+                                "DIAMOND",
+                                "HEXAGON",
+                                "HEPTAGON",
+                                "OCTAGON",
+                                "STAR",
+                                "CUBE",
+                                "CYLINDER",
+                                "CONE",
+                                "PYRAMID"
+                            ],
+                            "status": true
+                        },
+                        {
+                            "title": "Fruits",
+                            "image":"../assets/images/letters/subCategories/fruits.png",
+                            "config":[
+                                {
+                                    "fullWord":false,
+                                    "difficulty":"normal",
+                                    "timeRemaining":30,
+                                    "random":false,
+                                    "bonusWord":5,
+                                    "point":1,
+                                    "cursedWord":1
+                                }
+                            ],
+                            "words": [
+                                "APPLE",
+                                "BANANA",
+                                "ORANGE",
+                                "GRAPE",
+                                "STRAWBERRY",
+                                "PINEAPPLE",
+                                "WATERMELON",
+                                "MANGO",
+                                "BLUEBERRY",
+                                "PEAR",
+                                "CHERRY",
+                                "LEMON",
+                                "KIWI",
+                                "COCONUT"
+                            ],
+                            "status": true
+                        },
+                        {
+                            "title": "Weather",
+                            "image":"../assets/images/letters/subCategories/weather.png",
+                            "config":[
+                                {
+                                    "fullWord":false,
+                                    "difficulty":"normal",
+                                    "timeRemaining":30,
+                                    "random":false,
+                                    "bonusWord":5,
+                                    "point":1,
+                                    "cursedWord":1
+                                }
+                            ],
+                            "words": [
+                                "SUNNY",
+                                "CLOUDY",
+                                "RAINY",
+                                "SNOWY",
+                                "WINDY",
+                                "STORMY",
+                                "FOGGY",
+                                "HUMID",
+                                "DRY",
+                                "COLD",
+                                "ICY",
+                                "DRIZZLY",
+                                "OVERCAST"
+                            ],
+                            "status": true
+                        }
+                    ]
+                },
+                {
+                    "category":"Numbers",
+                    "status":false,
+                    "description":"",
+                    "subCategories":[{}]
+                },
+                {
+                    "category":"Visuals",
+                    "status":false,
+                    "description":"",
+                    "subCategories":[{}]
+                }
+            ]
+        }
+    ]
+}
