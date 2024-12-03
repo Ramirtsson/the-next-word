@@ -30,5 +30,11 @@
     {
         "word" : "VOLLEYBALL",
         "category" : "Sports"
+    },
+    {
+        "word" : "TRIANGULO",
+        "category" : "Geometry",
+        "fullWord": true,
+        "icon": "triangulo"
     }
 ]
