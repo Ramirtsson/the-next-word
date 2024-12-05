@@ -30,19 +30,17 @@
                         {
                             "title": "Animals",
                             "image":"../assets/images/letters/subCategories/animals.webp",
-                            "config":[
-                                {
-                                    "fullWord":false,
-                                    "difficulty":"easy",
+                            "config":{
+                                    "fullWord":true,
+                                    "difficulty":"esasy",
                                     "timeRemaining":30,
                                     "random":false,
                                     "bonusWord":5,
                                     "point":1,
                                     "cursedWord":1
-                                }
-                            ],
+                            },
                             "words": [
-                                "CHICKEM",
+                                "CHICKEN",
                                 "HORSE",
                                 "DOG",
                                 "FOX",

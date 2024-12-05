@@ -21,12 +21,11 @@ export class selectGameScene extends Phaser.Scene{
         this.drawGames()
     }
 
-    drawGames(){
+    async drawGames(){
         var index=0;
         var row=400;
         for (var i = 0; i < this.levels.length; i++) {
             console.log(index);
-            
             var btn_level=this.add.image(cols[index]-(col_size/2),row , this.levels[i].image).setOrigin(.5,.5).setScale(.6).setInteractive();
             index++;
             if (index>2) {
@@ -35,13 +34,14 @@ export class selectGameScene extends Phaser.Scene{
             }
 
             btn_level.name=this.levels[i].title;
-            btn_level.on("pointerdown", ((words) => {
+            
+            btn_level.on("pointerdown", ((words,lvl) => {
                 return () => {
                     console.log("data", words);
                     originScreen = "selectModeScene";
-                    this.scene.start("inGameScene", { words: words });
+                    this.scene.start("inGameScene", { words: words, lvl: lvl });
                 };
-            })(this.levels[i].words), this);
+            })(this.levels[i].words,this.levels[i]), this);
         }
 
        
