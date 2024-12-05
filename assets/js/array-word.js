@@ -1,37 +1,37 @@
 
 class ArrayWord{
-    constructor(category,rows = 8, cols = 6){
+    constructor(rows = 8, cols = 6){
         this._data = []
-        this.category = category
         this.rows = rows
         this.cols = cols
+        this.lvl = [];
         this._displayed = new Set();
         this.infoWord
     }
 
-    async loadData() {
-        if(this._data.length >0) return
+    // async loadData() {
+    //     if(this._data.length >0) return
 
-        try {
-          const response = await fetch('data/words.json');
-          
-          if (!response.ok) {
-            throw new Error('Error al cargar el archivo JSON');
-          }
-          this._data = await response.json();
+    //     try {
+    //       const response = await fetch('data/config.json');
+            
+    //       if (!response.ok) {
+    //         throw new Error('Error al cargar el archivo JSON');
+    //       }
+    //       this._data = await response.json();
+    //       this._data = this._data.filter(value => value.category === this.category);
 
-          this._data = this._data.filter(value => value.category === this.category);
-
-        } catch (error) {
-          console.error('Hubo un problema con la carga del archivo JSON:', error);
-        }
-    }
+    //     } catch (error) {
+    //       console.error('Hubo un problema con la carga del archivo JSON:', error);
+    //     }
+    // }
 
     getArrayWord(){
         if (this._data.length === 0) {
             console.log("No hay datos disponibles");
             return;
         }
+
         const availableWords = this._data.filter(word => !this._displayed.has(word.word));
         
         if (availableWords.length === 0) {
@@ -41,9 +41,10 @@ class ArrayWord{
         const randomIndex = Math.floor(Math.random() * availableWords.length);
         const randomWord = availableWords[randomIndex];
         this.infoWord = availableWords[randomIndex];
-        this._displayed.add(randomWord.word);
-        console.log(randomWord.word)
-        return this.makeArray(randomWord.word)
+        this._displayed.add(randomWord);
+
+        console.log(this._data)
+        return this.makeArray(randomWord)
     }
 
     reset() {
@@ -57,8 +58,8 @@ class ArrayWord{
         const array = Array.from({ length: this.rows }, () => Array(this.cols).fill(null));
         console.log(array);
         const uniqueLetters = word.toUpperCase().split('')
-        
-        if(!this.infoWord['fullWord']){
+
+        if(!this.lvl['config'][0]['fullWord']){
             uniqueLetters.forEach(letter => {
                 let placed = false;            
                     while (!placed) {
