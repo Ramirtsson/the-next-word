@@ -6,6 +6,14 @@ let mid_w_q=mid_w/2;
 let base_cols=3;
 let base_rows=3;
 
+if (width>height) {
+	var default_scale=.3;
+}else{
+	var default_scale=.2;
+}
+
+
+
 let basic_padding=20;//padding para evitar que los elementos toquen las orillas;
 let col_size=(width-(basic_padding*base_cols))/base_cols;
 let cols=[];
@@ -28,7 +36,7 @@ let globalScore=0;
 let btn_money=undefined;//para cambiar el texto de este boton usar btn_money.objText.text="nuevo texto";
 
 
-let originScreen=undefined;//se usa para que el boton de regresar sepa a que escena ir; Revisar elements->showBtnReturn
+let originScreen=[];//se usa para que el boton de regresar sepa a que escena ir; Revisar elements->showBtnReturn
 
 
 
