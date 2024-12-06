@@ -39,7 +39,7 @@ export class inGameScene extends Phaser.Scene{
         const elements = this.scene.get('elements');
         elements.getBackground(this,"bg_game");
         elements.showBtnReturn(this,originScreen);
-        elements.showBtnMoney(this);
+        //elements.showBtnMoney(this);
         this.drawBoard()
     }
 

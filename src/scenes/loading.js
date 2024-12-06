@@ -52,26 +52,24 @@ export class loadingScene extends Phaser.Scene{
         const elements = this.scene.get('elements');//trae distintos elementos del juego
         const animotions = this.scene.get('animotions');//ejecuta animaciones genericas
         elements.getBackground(this,"bg_main");
-        elements.showBtnChallenges(this);
-        elements.showBtnProfile(this);
-        elements.showBtnConfig(this);
-        elements.showBtnMoney(this);
+        //elements.showBtnConfig(this);
+        //elements.showBtnMoney(this);
 
 
         //elemetnos unicos del main: maguito, boton start, titulo del juego
-        this.add.image(mid_w+50, mid_h, 'mage').setOrigin(.5,1).setScale(.6);
+        this.add.image(mid_w, mid_h, 'mage').setOrigin(.5,1).setScale(default_scale);
 
         animotions.anim_heartbeat(this,
-                this.add.image(mid_w, mid_h+300, 'btn_start')
-                .setOrigin(.5,.5)
-                .setScale(.4)
+                this.add.image(mid_w, height-10, 'btn_start')
+                .setOrigin(.5,1)
+                .setScale(.2)
                 .setInteractive()
                 .on("pointerdown", () => {
-                    originScreen="loading";
+                    originScreen.push("loading");
                     this.scene.start('selectModeScene');
                 })
-            ,{scale:.5,duration:350});
-        animotions.anim_swing(this,this.add.image(mid_w, mid_h+100, 'game_title').setOrigin(.5,1).setScale(.6),{start:mid_w+10,duration:2000});
+            ,{scale:.25,duration:350});
+        animotions.anim_swing(this,this.add.image(mid_w, mid_h+100, 'game_title').setOrigin(.5,1).setScale(default_scale),{start:mid_w+10,duration:2000});
 
     }
 
