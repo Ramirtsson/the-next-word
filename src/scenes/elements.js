@@ -7,13 +7,15 @@ export class elements extends Phaser.Scene{
 
     showBtnConfig(scene){
         //recibe la escena donde se va a mostrar el elemento
-        scene.add.image(0+basic_padding, 0+basic_padding, 'btn_config').setOrigin(0,0).setScale(.6);
+        scene.add.image(0+basic_padding, 0+basic_padding, 'btn_config').setOrigin(0,0).setScale(default_scale);
     }
 
     showBtnReturn(scene,origin){//origin: a donde vamos a regresar
-        scene.add.image(0+basic_padding, 0+basic_padding, 'btn_return').setOrigin(0,0).setScale(.6).setInteractive().on("pointerdown", () => {
+        scene.add.image(0+basic_padding, 0+basic_padding, 'btn_return').setOrigin(0,0).setScale(default_scale).setInteractive().on("pointerdown", () => {
+            
             console.log(origin);
-            scene.scene.start(origin);
+            scene.scene.start(originScreen[origin.length-1]);
+            originScreen.pop();
         });
     }
 
@@ -26,17 +28,17 @@ export class elements extends Phaser.Scene{
             }
             
         }
-        btn_money=scene.add.image(config.x, config.y, 'btn_add_coins').setOrigin(1,0).setScale(.6);
+        btn_money=scene.add.image(config.x, config.y, 'btn_add_coins').setOrigin(1,0).setScale(default_scale);
         btn_money.objText=scene.add.text(btn_money.x-(btn_money.width/3), btn_money.y+15 , 10, { fontFamily: 'Arial', fontSize: 40 }).setOrigin(1, 0).setStroke('#000000',6);
     }
 
 
     showBtnChallenges(scene){
-        scene.add.image((mid_w+mid_w_q), height, 'main_challenges').setOrigin(.5,1);
+        scene.add.image((mid_w+mid_w_q), height, 'main_challenges').setOrigin(.5,1).setScale(default_scale*2);
     }
 
     showBtnProfile(scene,x=null, y=null){
-        scene.add.image(mid_w_q, height, 'main_profile').setOrigin(.5,1);
+        scene.add.image(mid_w_q, height, 'main_profile').setOrigin(.5,1).setScale(default_scale*2);
     }
 
     getBackground(scene,bg){
