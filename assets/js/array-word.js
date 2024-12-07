@@ -2,6 +2,7 @@
 class ArrayWord{
     constructor(rows = 8, cols = 6){
         this._data = []
+        this.remaining = [],
         this.rows = rows
         this.cols = cols
         this.lvl = [];
@@ -26,24 +27,30 @@ class ArrayWord{
     //     }
     // }
 
-    getArrayWord(){
+    getArrayWord(remaining){
         if (this._data.length === 0) {
             console.log("No hay datos disponibles");
             return;
         }
+        var availableWords;
 
-        const availableWords = this._data.filter(word => !this._displayed.has(word.word));
-        
+        if(!Array.isArray(remaining)){
+            availableWords = this._data;
+        }else if(Array.isArray(remaining) && remaining.length >= 0){
+            availableWords = remaining;
+        }
+
         if (availableWords.length === 0) {
             console.log("Ya no hay más palabras disponibles.");
-            return;
+            return 'GG';
         }
         const randomIndex = Math.floor(Math.random() * availableWords.length);
         const randomWord = availableWords[randomIndex];
         this.infoWord = availableWords[randomIndex];
+        this.remaining = availableWords.filter(word => word !== this.infoWord );
+        console.log(this.remaining);
+        console.log(this.infoWord);
         this._displayed.add(randomWord);
-
-        console.log(this._data)
         return this.makeArray(randomWord)
     }
 
@@ -54,12 +61,14 @@ class ArrayWord{
 
     makeArray(word){
         const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        // 
+        var noWordArray;
         const array = Array.from({ length: this.rows }, () => Array(this.cols).fill(null));
-        console.log(array);
+        // console.log(array);
+
         const uniqueLetters = word.toUpperCase().split('')
 
-        if(!this.lvl['config'][0]['fullWord']){
+        if(!this.lvl['config'][0]['fullWord']){    
+                   
             uniqueLetters.forEach(letter => {
                 let placed = false;            
                     while (!placed) {
@@ -73,11 +82,23 @@ class ArrayWord{
                     }
             });
         }else{
+            // console.log('Aqui se reemplazan por imagenes');
+            // console.log(this._data);
+            // console.log(array);
+
+            noWordArray = this._data.map(itm => {
+                if(itm != word){
+                    return itm;
+                }
+            });
+
+            noWordArray = noWordArray.filter(itm => itm !== undefined && itm !== null && itm !== "");
+
             let placed = false;
             while (!placed) {
                 const randomRow = Math.floor(Math.random() * this.rows);
                 const randomCol = Math.floor(Math.random() * this.cols);
-
+            
                 if (array[randomRow][randomCol] === null) {
                     array[randomRow][randomCol] = word;
                     placed = true;
@@ -85,10 +106,13 @@ class ArrayWord{
             }
         }
         for (let i = 0; i < this.rows; i++) {
-            
             for (let j = 0; j < this.cols; j++) {
                 if (array[i][j] === null) {
-                    array[i][j] = alphabet[Math.floor(Math.random() * alphabet.length)];
+                    if(!this.lvl['config'][0]['fullWord']){  
+                        array[i][j] = alphabet[Math.floor(Math.random() * alphabet.length)];
+                    }else{
+                        array[i][j] = noWordArray[Math.floor(Math.random() * noWordArray.length)];
+                    }
                 }
             }
         }
