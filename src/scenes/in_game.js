@@ -155,7 +155,7 @@ export class inGameScene extends Phaser.Scene{
     //     var wordLoad = ['L','O','A','D','I','N','G'];
     //     this.specialBar = [];
     //     wordLoad.forEach((el, idx) => {
-    //         if(idx == 0){
+    //         if(idx == 0){a
     //             this.specialBar[idx] = this.add.image((window.innerWidth/wordLoad.length*2), height/2, el).setScale(this.scaleToken).setOrigin(0.5,0.5);
     //         }else{
     //             this.specialBar[idx] = this.add.image(this.specialBar[(idx-1)].x + this.specialBar[(idx-1)].displayWidth, height/2, el).setScale(this.scaleToken).setOrigin(0.5,0.5);
