@@ -11,10 +11,14 @@ export class inGameScene extends Phaser.Scene{
     }
 
     init(data) {
+        const elements = this.scene.get('elements');
+        elements.drawLoadingScreen(this)
         // Recibe los datos pasados desde EscenaOrigen
         this.words = data.words || 'Desconocido';
         this.lvl = data.lvl;
     }
+
+
 
     preload (){
         const alphabt = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','SPECIAL'];

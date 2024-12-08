@@ -1,7 +1,9 @@
 import Phaser from "./lib/phaser.js";
 import { animotions } from "./animations/animations.js";
 import {elements} from "./scenes/elements.js";
-import { loadingScene } from "./scenes/loading.js";
+import { bootLoader } from "./scenes/bootLoader.js";
+import { preloadScene } from "./scenes/preload.js";
+import { startScene } from "./scenes/startScene.js";
 import { selectModeScene } from "./scenes/modes.js";
 import { selectGameScene } from "./scenes/game_selection.js";
 import { inGameScene } from "./scenes/in_game.js";
@@ -26,9 +28,8 @@ const game = new Phaser.Game({
         debug: true,
       },
     },
-    scene: [loadingScene,selectModeScene,elements,animotions,selectGameScene,inGameScene],
+    scene: [bootLoader,preloadScene,startScene,selectModeScene,elements,animotions,selectGameScene,inGameScene],
 })
 
-console.log(game);
-game.scene.start('loading');
+game.scene.start('bootLoader');
 

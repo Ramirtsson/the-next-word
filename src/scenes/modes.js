@@ -11,9 +11,9 @@ export class selectModeScene extends Phaser.Scene{
 
         elements.getBackground(this,"bg_modes");
         this.add.image(mid_w, 50, "modes_title").setOrigin(.5,0).setScale(.5);
-        //elements.showBtnChallenges(this);
-        //elements.showBtnProfile(this);
-        elements.showBtnReturn(this,originScreen);
+        elements.showBtnChallenges(this);
+        elements.showBtnProfile(this);
+        //elements.showBtnReturn(this,originScreen);
         //elements.showBtnMoney(this);
 
         this.drawModes()
