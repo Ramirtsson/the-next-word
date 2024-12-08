@@ -53,7 +53,7 @@ export class inGameScene extends Phaser.Scene{
                 this.scaleToken = 0.3;
             }else{
                 if(height < 1081){
-                    this.scaleToken = 0.5;
+                    this.scaleToken = 0.33;
                 }else{
                     this.scaleToken = 0.6;
                 }
@@ -62,6 +62,7 @@ export class inGameScene extends Phaser.Scene{
             this.nextWord = new ArrayWord();
             this.nextWord.category = this.lvl['title'];        
             // console.log(this.arrayWord);
+            // this.loadingScreen();
             this.genBoard(this.words,'FIRSTGAME');
     }
 
@@ -87,10 +88,11 @@ export class inGameScene extends Phaser.Scene{
             if(idx == 0){
                 this.SPECIALWORD[idx] = this.add.image(window.innerWidth/12, window.innerHeight-(window.innerHeight/8), el).setScale(this.scaleToken-0.1).setOrigin(0.5,0.5).setDepth(1);
             }else{
-                this.SPECIALWORD[idx] = this.add.image((window.innerWidth/12)+(this.SPECIALWORD[(idx-1)].x-(this.SPECIALWORD[(idx-1)].displayWidth/1.9)), window.innerHeight-(window.innerHeight/8), el).setScale(this.scaleToken-0.1).setOrigin(0.5,0.5).setDepth(1);
+                this.SPECIALWORD[idx] = this.add.image(this.SPECIALWORD[idx-1].x + (this.SPECIALWORD[idx-1].displayWidth/1.4), window.innerHeight-(window.innerHeight/8), el).setScale(this.scaleToken-0.1).setOrigin(0.5,0.5).setDepth(1);
             }
             this.SPECIALWORD[idx].setAlpha(0.5);
             this.SPECIALWORD[idx].name = el+"_"+idx;
+            this.SPECIALWORD[idx].used = false;
             this.SPECIALWORD[idx].setAngle(Math.random() * (30 - (-30)) + (-30));
         })
 
@@ -101,7 +103,7 @@ export class inGameScene extends Phaser.Scene{
                 // if(this.wordsImage[pos]) this.wordsImage[pos].destroy();
                 if(this.lvl['config'][0]['fullWord'] === true){
                     this.wordsImage[pos] = this.add.image(100, 100, 'SPECIAL').setScale(this.scaleToken).setOrigin(0.5,0.5).setInteractive();
-                    this.wordsImage[pos]['icon'] = this.add.image(100, 100, cel.toLowerCase()).setScale(0.1).setOrigin(0.5,0.5).setDepth(1);
+                    this.wordsImage[pos]['icon'] = this.add.image(100, 100, cel.toLowerCase()).setScale(this.wordsImage[pos].scale/6).setOrigin(0.5,0.5).setDepth(1);
                     this.wordsImage[pos]['icon'].y = height+(height/2);
                 }else{
                     this.wordsImage[pos] = this.add.image(100, 100, cel).setScale(this.scaleToken).setOrigin(0.5,0.5).setInteractive();
@@ -145,7 +147,20 @@ export class inGameScene extends Phaser.Scene{
         });
 
     }
-
+    // loadingScreen(){
+    //     var wordLoad = ['L','O','A','D','I','N','G'];
+    //     this.specialBar = [];
+    //     wordLoad.forEach((el, idx) => {
+    //         if(idx == 0){
+    //             this.specialBar[idx] = this.add.image((window.innerWidth/wordLoad.length*2), height/2, el).setScale(this.scaleToken).setOrigin(0.5,0.5);
+    //         }else{
+    //             this.specialBar[idx] = this.add.image(this.specialBar[(idx-1)].x + this.specialBar[(idx-1)].displayWidth, height/2, el).setScale(this.scaleToken).setOrigin(0.5,0.5);
+    //         }
+    //     })
+    //     // setTimeout(() => {
+    //     //     
+    //     // },5e3)   
+    // }
     clearBoard(){
         var deleteArray = [];
         if(this.SPECIALWORD.length > 0){
@@ -233,9 +248,11 @@ export class inGameScene extends Phaser.Scene{
                         })
                     }
                 }else{
-                    
+                    var foundLetter = false;
                     this.SPECIALWORD.forEach((el,idx) => {
-                        if(el.name == chara+"_"+idx){
+                        if(el.name == chara+"_"+idx && foundLetter === false && this.SPECIALWORD[idx].used === false){
+                            foundLetter = true;
+                            this.SPECIALWORD[idx].used = true;
                             this.tweens.add({
                                 targets: this.SPECIALWORD[idx],   
                                 alpha:1,
@@ -248,7 +265,7 @@ export class inGameScene extends Phaser.Scene{
                                         this.clearBoard()
                                     }
                                 }
-                            }); 
+                            });
                         }
                     })
                 }
