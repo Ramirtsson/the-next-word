@@ -6,6 +6,7 @@ class ArrayWord{
         this.rows = rows
         this.cols = cols
         this.lvl = [];
+        this.wrongChar = '';
         this._displayed = new Set();
         this.infoWord
     }
@@ -48,8 +49,6 @@ class ArrayWord{
         const randomWord = availableWords[randomIndex];
         this.infoWord = availableWords[randomIndex];
         this.remaining = availableWords.filter(word => word !== this.infoWord );
-        console.log(this.remaining);
-        console.log(this.infoWord);
         this._displayed.add(randomWord);
         return this.makeArray(randomWord)
     }
@@ -65,7 +64,9 @@ class ArrayWord{
         const array = Array.from({ length: this.rows }, () => Array(this.cols).fill(null));
         // console.log(array);
 
-        const uniqueLetters = word.toUpperCase().split('')
+        const uniqueLetters = word.toUpperCase().split('');
+
+
 
         if(!this.lvl['config'][0]['fullWord']){    
                    

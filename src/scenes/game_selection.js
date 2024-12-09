@@ -25,9 +25,9 @@ export class selectGameScene extends Phaser.Scene{
         var index=0;
         var row=height/4;
         for (var i = 0; i < this.levels.length; i++) {
-            console.log(index);
+            // console.log(index);
             var btn_level=this.add.image(cols[index]-(col_size/2),row , this.levels[i].image).setOrigin(.5,0).setScale(default_scale+.1).setInteractive();
-            console.log(btn_level)
+            // console.log(btn_level)
             index++;
             if (index>2) {
                 index=0;
@@ -38,7 +38,7 @@ export class selectGameScene extends Phaser.Scene{
             
             btn_level.on("pointerdown", ((words,lvl) => {
                 return () => {
-                    console.log("data", words);
+                    // console.log("data", words);
                     originScreen.push("selectGameScene");
                     this.scene.start("inGameScene", { words: words, lvl: lvl });
                 };
