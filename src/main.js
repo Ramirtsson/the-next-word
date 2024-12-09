@@ -10,7 +10,7 @@ import { inGameScene } from "./scenes/in_game.js";
 
 
 const game = new Phaser.Game({
-    type:Phaser.CANVAS,
+    type:Phaser.WEBGL,
     roundPixels:true,
     pixelArt:true,
     scale: {

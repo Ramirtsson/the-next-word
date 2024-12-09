@@ -31,7 +31,7 @@
                             "title": "Animals",
                             "image":"../assets/images/letters/subCategories/animals.webp",
                             "config":{
-                                    "fullWord":true,
+                                    "fullWord":false,
                                     "difficulty":"esasy",
                                     "timeRemaining":30,
                                     "random":false,
