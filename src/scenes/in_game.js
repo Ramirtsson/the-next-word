@@ -12,10 +12,11 @@ export class inGameScene extends Phaser.Scene{
 
     init(data) {
         const elements = this.scene.get('elements');
-        elements.drawLoadingScreen(this)
+        
         // Recibe los datos pasados desde EscenaOrigen
         this.words = data.words || 'Desconocido';
         this.lvl = data.lvl;
+        // console.log(this.lvl);
         this.actionMoment = false;
         this.waitingForChange = false;
     }
@@ -38,8 +39,7 @@ export class inGameScene extends Phaser.Scene{
             this.load.image(el, 'assets/sprites/words/'+el.toLowerCase()+'.png');
             this.load.image(el+'_alt', 'assets/sprites/words/'+el.toLowerCase()+'_alt.png');
         })
-
-        if(this.lvl['config'][0]['fullWord'] === true){
+        if(this.lvl['config']['fullWord'] || this.lvl['findDifference'].length > 0){
             this.words.forEach((el) =>{
                 this.load.image(el.toLowerCase(), 'assets/sprites/icons/'+el.toLowerCase()+'.png');
             });
@@ -88,7 +88,7 @@ export class inGameScene extends Phaser.Scene{
 
 
                 
-            if(this.lvl.config[0]['timeRemaining'] > 0){
+            if(this.lvl['config']['timeRemaining'] > 0){
 
                 this.TimeTitle = this.add.text(window.innerWidth/14+(window.innerWidth/1.7), window.innerHeight+(window.innerHeight/2), 
                 'TIME', { 
@@ -96,7 +96,7 @@ export class inGameScene extends Phaser.Scene{
                     fontFamily: "Fredoka",
                     stroke: '1px'
                 }).setOrigin(0.5,0.5);
-                this.timeRemaining = this.lvl.config[0]['timeRemaining'];
+                this.timeRemaining = this.lvl['config']['timeRemaining'];
                 
             }
             this.genBoard(this.words,'FIRSTGAME');
@@ -116,7 +116,7 @@ export class inGameScene extends Phaser.Scene{
         }
 
         if(remaining == 'FIRSTGAME'){
-            if(this.lvl.config[0]['timeRemaining'] > 0){
+            if(this.lvl['config']['timeRemaining'] > 0){
                 this.timer = this.time.addEvent({
                     delay: 1000,            // Disparar cada 1000 ms (1 segundo)
                     callback: () => {
@@ -167,11 +167,13 @@ export class inGameScene extends Phaser.Scene{
         
         
         this.board = this.add.rectangle(window.innerWidth/2,window.innerHeight/3,width/1.25,height/1.25,'0xffffff',0).setOrigin(0.5,0.5);
+        // console.log(this.arrayWord);
         this.arrayWord.forEach((room,idx) => {
             room.forEach((cel,stp) => {
                 var pos = counter;
                 // if(this.wordsImage[pos]) this.wordsImage[pos].destroy();
-                if(this.lvl['config'][0]['fullWord'] === true){
+
+                if(this.lvl['config']['fullWord'] || this.lvl['findDifference'].length > 0){
                     this.wordsImage[pos] = this.add.image(100, 100, 'SPECIAL').setScale(this.scaleToken).setOrigin(0.5,0.5).setInteractive();
                     this.wordsImage[pos]['icon'] = this.add.image(100, 100, cel.toLowerCase()).setScale(this.wordsImage[pos].scale/6).setOrigin(0.5,0.5).setDepth(1);
                     this.wordsImage[pos]['icon'].y = height+(height/2);
@@ -192,7 +194,7 @@ export class inGameScene extends Phaser.Scene{
                         if(pos === (8*6)-1){
                             this.showCurrentWord();
                             if(remaining == 'FIRSTGAME'){
-                                if(this.lvl.config[0]['timeRemaining'] > 0){
+                                if(this.lvl['config']['timeRemaining'] > 0){
                                     this.showTimer('FIRSTGAME');
                                 }
                                 this.showScore('FIRSTGAME');
@@ -203,7 +205,7 @@ export class inGameScene extends Phaser.Scene{
                 });
                 this.wordsImage[pos].name = cel;
                 this.wordsImage[pos].used = false;
-                if(this.lvl['config'][0]['fullWord'] === true){
+                if(this.lvl['config']['fullWord'] === true){
                     this.wordsImage[pos]['icon'].x = this.wordsImage[pos].x; 
                     this.tweens.add({
                         targets: this.wordsImage[pos]['icon'],
@@ -220,7 +222,7 @@ export class inGameScene extends Phaser.Scene{
                 
                 this.wordsImage[pos].on('pointerdown',(pointer) => {
                     pointer.event.stopPropagation();   
-                    this.selectCharacter(this.wordsImage[pos],pos,cel,this.lvl['config'][0]['fullWord']);
+                    this.selectCharacter(this.wordsImage[pos],pos,cel,this.lvl['config']['fullWord']);
                 });
                 counter++;
             })
@@ -250,11 +252,10 @@ export class inGameScene extends Phaser.Scene{
                 }
             });
         })
-        if(this.lvl.config[0]['timeRemaining'] > 0){
+        if(this.lvl['config']['timeRemaining'] > 0){
             this.timer.paused = false;
         }
     }
-
     showTimer(type){
         this.lastTime = [];
         var anglesMod = [];
@@ -335,7 +336,6 @@ export class inGameScene extends Phaser.Scene{
         
 
     }
-
     showScore(type){
         this.lastScore = [];
         var anglesMod = [];
@@ -420,9 +420,8 @@ export class inGameScene extends Phaser.Scene{
 
 
     }
-
     clearBoard(step){
-        if(this.lvl.config[0]['timeRemaining'] > 0){
+        if(this.lvl['config']['timeRemaining'] > 0){
             this.timer.paused = true;
         }
         var deleteArray = [];
@@ -446,7 +445,7 @@ export class inGameScene extends Phaser.Scene{
                     onComplete: function () {
                     }    
                 });
-                if(this.lvl['config'][0]['fullWord'] === true){
+                if(this.lvl['config']['fullWord'] === true){
                     this.tweens.add({
                         targets: this.wordsImage[i]['icon'],   
                         y:height+(height/2),
@@ -478,7 +477,6 @@ export class inGameScene extends Phaser.Scene{
             }); 
         });   
     }
-
     resultTime(){
         if(this.prettyTime){
             this.prettyTime.forEach((el, idx) => {
@@ -545,11 +543,15 @@ export class inGameScene extends Phaser.Scene{
     
         this.youGotTextOne = ['Y','O','U']; 
         this.youGotTextTwo = ['G','O','T','I','T']; 
-         
-        let remainingCount = this.nextWord.remaining.length+1;
+        
         let totalCount = this.nextWord._data.length;
+        let remainingCount = (this.nextWord.remaining.length) - totalCount;
 
-        this.youGotTextThree = remainingCount+'OF'+totalCount;
+
+        // console.log(remainingCount);
+        // console.log(totalCount);
+
+        this.youGotTextThree = (remainingCount)+'OF'+(totalCount);
         this.youGotTextThree = this.youGotTextThree.split('');
 
         this.lineOneFinish = [];
@@ -574,7 +576,7 @@ export class inGameScene extends Phaser.Scene{
         });
         this.youGotTextThree.forEach((el,idx) => {
             if(idx==0){
-                this.lineThreeFinish[idx] = this.add.image((window.innerWidth/2) - temp.displayWidth*(this.youGotTextThree.length/2.65),-window.innerHeight/2,el).setScale(this.scaleToken).setOrigin(0.5,0.5);
+                this.lineThreeFinish[idx] = this.add.image((window.innerWidth/2) - temp.displayWidth*(this.youGotTextThree.length/2.9),-window.innerHeight/2,el).setScale(this.scaleToken).setOrigin(0.5,0.5);
             }else{
                 this.lineThreeFinish[idx] = this.add.image(this.lineThreeFinish[(idx-1)].x+(this.lineThreeFinish[(idx-1)].displayWidth),-window.innerHeight/2,el).setScale(this.scaleToken).setOrigin(0.5,0.5);
             }
@@ -648,22 +650,21 @@ export class inGameScene extends Phaser.Scene{
             });
         })
         temp.destroy();
-
-        if(remainingCount <= Math.ceil(totalCount-(totalCount*0.3))){
-            console.log('Se ha conseguido');
+        
+        if(Math.abs(remainingCount) >= Math.ceil(totalCount*0.75)){
+            // console.log('Se ha conseguido');
             setTimeout(() => {
-                this.finishGame();
+                this.finishGame('clear');
             },2000)
         }else{
-            console.log('AH! NO POS NADOTA');
+            // console.log('AH! NO POS NADOTA');
             setTimeout(() => {
-                this.finishGame();
+                this.finishGame('failed');
             },2000)
         }
 
     }
-
-    finishGame(){
+    finishGame(type){
 
         this.lineOneFinish.forEach((el,idx) => {
             this.tweens.add({
@@ -704,13 +705,108 @@ export class inGameScene extends Phaser.Scene{
                         this.lineThreeFinish.forEach((el,idx) => {
                             this.lineThreeFinish[idx].destroy();
                         })
-                        // const elements = this.scene.get('elements');
-                        // elements.showBtnReturn(this,originScreen);
+                                 
                     }
                 }
             });
         })
+
+        this.titleStage = ['S','T','A','G','E']; 
+        this.stageClear = ['C','L','E','A','R'];
+        this.stageFailed = ['F','A','I','L','E','D'];
+        var temp = this.add.image(-window.innerHeight,window.innerHeight/2,'SPECIAL').setScale(this.scaleToken).setOrigin(0.5,0.5).setAlpha(0);
+        this.lineOneStage = [];
+        this.lineTwoStage = [];
+
+
+        this.titleStage.forEach((el,idx) => {
+            if(idx==0){
+                this.lineOneStage[idx] = this.add.image((window.innerWidth/2) - temp.displayWidth*(this.titleStage.length/2.5),-window.innerHeight/2,el).setScale(this.scaleToken).setOrigin(0.5,0.5);
+            }else{
+                this.lineOneStage[idx] = this.add.image(this.lineOneStage[(idx-1)].x+(this.lineOneStage[(idx-1)].displayWidth),-window.innerHeight/2,el).setScale(this.scaleToken).setOrigin(0.5,0.5);
+            }
+        });
+        this.lineOneStage.forEach((el,idx) => {
+            this.tweens.add({
+                targets: el,
+                y:window.innerHeight/2-temp.displayWidth*2,
+                duration: 100*(idx+1),
+                ease: 'Quart.easeInOut',        
+                repeat: 0,
+                yoyo:false,
+            });
+        })
         
+        if(type == 'clear'){
+            this.lineOneStage.forEach((el,idx) => {
+                this.tweens.add({
+                    targets: el,
+                    angle: (Math.random() * (15 - (-15)) + (-15)),
+                    duration: 500,
+                    ease: 'Quart.easeInOut',        
+                    repeat: -1,
+                    yoyo:true,
+                });
+            })
+            this.stageClear.forEach((el,idx) => {
+                if(idx==0){
+                    this.lineTwoStage[idx] = this.add.image((window.innerWidth/2) - temp.displayWidth*(this.stageClear.length/2.5),-window.innerHeight/2,el).setScale(this.scaleToken).setOrigin(0.5,0.5);
+                }else{
+                    this.lineTwoStage[idx] = this.add.image(this.lineTwoStage[(idx-1)].x+(this.lineTwoStage[(idx-1)].displayWidth),-window.innerHeight/2,el).setScale(this.scaleToken).setOrigin(0.5,0.5);
+                }
+            });
+            this.lineTwoStage.forEach((el,idx) => {
+                this.tweens.add({
+                    targets: el,
+                    y:window.innerHeight/2-temp.displayWidth,
+                    duration: 100*(idx+1),
+                    ease: 'Quart.easeInOut',        
+                    repeat: 0,
+                    yoyo:false,
+                });
+            })
+            this.lineTwoStage.forEach((el,idx) => {
+                this.tweens.add({
+                    targets: el,
+                    angle: (Math.random() * (15 - (-15)) + (-15)),
+                    duration: 500,
+                    ease: 'Quart.easeInOut',        
+                    repeat: 3,
+                    yoyo:true,
+                    onComplete: () => {
+                        const elements = this.scene.get('elements');
+                        elements.mainModes(this);   
+                    }
+                });
+            })
+        }else{
+            this.stageFailed.forEach((el,idx) => {
+                if(idx==0){
+                    this.lineTwoStage[idx] = this.add.image((window.innerWidth/2) - temp.displayWidth*(this.stageFailed.length/2.4),-window.innerHeight/2,el).setScale(this.scaleToken).setOrigin(0.5,0.5);
+                }else{
+                    this.lineTwoStage[idx] = this.add.image(this.lineTwoStage[(idx-1)].x+(this.lineTwoStage[(idx-1)].displayWidth),-window.innerHeight/2,el).setScale(this.scaleToken).setOrigin(0.5,0.5);
+                }
+            });
+            this.lineTwoStage.forEach((el,idx) => {
+                this.tweens.add({
+                    targets: el,
+                    y:window.innerHeight/2-temp.displayWidth,
+                    duration: 100*(idx+1),
+                    ease: 'Quart.easeInOut',        
+                    repeat: 0,
+                    yoyo:false,
+                    onComplete: () => {
+                        setTimeout(() => {
+                            const elements = this.scene.get('elements');
+                            elements.mainModes(this); 
+                        },3000)
+                    }
+                });
+            })
+        }
+        
+        
+        temp.destroy();
 
     }
     
@@ -757,7 +853,8 @@ export class inGameScene extends Phaser.Scene{
                                 this.tweens.add({
                                     targets: this.SPECIALWORD[idx],
                                     scale: this.scaleToken+(this.scaleToken/5),
-                                    duration: 100*(idx+1),
+                                    duration: 200,
+                                    delay: 100*(idx+1),
                                     ease: 'Quart.easeInOut',        
                                     repeat: 0,
                                     yoyo:true,
@@ -766,8 +863,8 @@ export class inGameScene extends Phaser.Scene{
                                         if(this.buildResult.length === uniqueLetters.length){
                                             setTimeout(() => {
                                                 this.actionMoment = false;
-                                                if(this.lvl.config[0]['timeRemaining'] > 0){
-                                                    this.timeRemaining += this.lvl.config[0]['bonusWord'];
+                                                if(this.lvl['config']['timeRemaining'] > 0){
+                                                    this.timeRemaining += this.lvl['config']['bonusWord'];
                                                 }                                        
                                                 this.clearBoard('')
                                             },200)
@@ -778,7 +875,8 @@ export class inGameScene extends Phaser.Scene{
                                 this.tweens.add({
                                     targets: this.SPECIALWORD[idx],   
                                     alpha:1,
-                                    duration: 100*(idx+1),
+                                    duration: 200,
+                                    delay: 100*(idx+1),
                                     ease: 'Quart.easeInOut',        
                                     repeat: 0,         
                                     onComplete: () => {
@@ -822,6 +920,16 @@ export class inGameScene extends Phaser.Scene{
                                         repeat: 0,
                                         yoyo:true,
                                     });
+
+                                    this.tweens.add({
+                                        targets: this.SPECIALWORD[idx],
+                                        scale: this.scaleToken+(this.scaleToken/5),
+                                        duration: 100,
+                                        ease: 'Quart.easeInOut',        
+                                        repeat: 0,
+                                        yoyo:true,
+                                    });
+
                                     this.tweens.add({
                                         targets: this.SPECIALWORD[idx],   
                                         alpha:1,
@@ -831,8 +939,8 @@ export class inGameScene extends Phaser.Scene{
                                         onComplete: () => {
                                             this.actionMoment = false;
                                             if(this.buildResult.length === uniqueLetters.length){
-                                                if(this.lvl.config[0]['timeRemaining'] > 0){
-                                                    this.timeRemaining += this.lvl.config[0]['bonusWord'];
+                                                if(this.lvl['config']['timeRemaining'] > 0){
+                                                    this.timeRemaining += this.lvl['config']['bonusWord'];
                                                 }
                                                 
                                                 this.clearBoard('')
@@ -841,11 +949,11 @@ export class inGameScene extends Phaser.Scene{
                                     });
                                 }else{
                                     foundLetter = true;
-                                    if(this.lvl.config[0]['difficulty'].toUpperCase() == 'EASY'){
+                                    if(this.lvl['config']['difficulty'].toUpperCase() == 'EASY'){
                                         
-                                        if(this.lvl.config[0]['timeRemaining'] > 0){
+                                        if(this.lvl['config']['timeRemaining'] > 0){
                                             // this.showScore('wrong');
-                                            this.timeRemaining -= this.lvl.config[0]['bonusWord'];
+                                            this.timeRemaining -= this.lvl['config']['bonusWord'];
                                             this.showTimer();
                                         }else{
                                             this.showScore('wrong');
@@ -875,7 +983,7 @@ export class inGameScene extends Phaser.Scene{
                     
                 }else{
                     
-                    if(this.lvl.config[0]['difficulty'].toUpperCase() == 'EASY'){
+                    if(this.lvl['config']['difficulty'].toUpperCase() == 'EASY'){
                         
                         this.tweens.add({
                             targets: this.wordsImage[step],
@@ -887,9 +995,9 @@ export class inGameScene extends Phaser.Scene{
                             yoyo:true,  
                             onComplete: () => {
                                 this.actionMoment = false;
-                                if(this.lvl.config[0]['timeRemaining'] > 0){
+                                if(this.lvl['config']['timeRemaining'] > 0){
                                     // this.showScore('wrong');
-                                    this.timeRemaining -= this.lvl.config[0]['bonusWord'];
+                                    this.timeRemaining -= this.lvl['config']['bonusWord'];
                                     this.showTimer();
                                 }else{
                                     this.showScore('wrong');
@@ -897,7 +1005,7 @@ export class inGameScene extends Phaser.Scene{
                             }
                         });
                         this.buildResult = this.buildResult.substr(0, this.buildResult.length - 1);
-                        console.log("fallaste vuelve a intentar tu palabra es:", this.buildResult)   
+                        // console.log("fallaste vuelve a intentar tu palabra es:", this.buildResult)   
                     }else{
                         // this.clearBoard()
                     }

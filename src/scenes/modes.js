@@ -27,7 +27,7 @@ export class selectModeScene extends Phaser.Scene{
             btn_level.subCategories=levels[i].subCategories;
             btn_level.on("pointerdown", ((subCategories) => {
                 return () => {
-                    console.log("data", subCategories);
+                    // console.log("data", subCategories);
                     originScreen.push("selectModeScene");
                     this.scene.start("selectGameScene", { levels: subCategories });
                 };

@@ -10,6 +10,10 @@ export class preloadScene extends Phaser.Scene{
         const elements = this.scene.get('elements');
         elements.drawLoadingScreen(this)
         
+        // console.log(levels);
+        
+
+        
     }
 
     preload(){

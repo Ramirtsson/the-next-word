@@ -23,16 +23,18 @@
             ],
             "categoryGames": [
                 {
-                    "category":"Letters",
+                    "category":"Visuals",
+                    "image":"mode_icon_1",
                     "status":true,
                     "description":"",
                     "subCategories":[
                         {
                             "title": "Animals",
-                            "image":"../assets/images/letters/subCategories/animals.webp",
+                            "category":"Visuals",
+                            "image":"icon_animals",
                             "config":{
-                                    "fullWord":false,
-                                    "difficulty":"esasy",
+                                    "fullWord":true,
+                                    "difficulty":"easy",
                                     "timeRemaining":30,
                                     "random":false,
                                     "bonusWord":5,
@@ -48,11 +50,13 @@
                                 "AXOLOTL",
                                 "RAT"
                             ],
+                            "findDifference":[],
                             "status": true
                         },
                         {
                             "title": "Planets",
-                            "image":"../assets/images/letters/subCategories/planets.png",
+                            "category":"Letters",
+                            "image":"icon_planets",
                             "config":[
                                 {
                                     "fullWord":false,
@@ -78,7 +82,7 @@
                         },
                         {
                             "title": "Forms",
-                            "image":"../assets/images/letters/subCategories/forms.png",
+                            "image":"icon_figures",
                             "config":[
                                 {
                                     "fullWord":false,
@@ -110,7 +114,7 @@
                         },
                         {
                             "title": "Fruits",
-                            "image":"../assets/images/letters/subCategories/fruits.png",
+                            "image":"icon_fruits",
                             "config":[
                                 {
                                     "fullWord":false,
@@ -142,7 +146,7 @@
                         },
                         {
                             "title": "Weather",
-                            "image":"../assets/images/letters/subCategories/weather.png",
+                            "image":"icon_weather",
                             "config":[
                                 {
                                     "fullWord":false,
@@ -176,14 +180,68 @@
                 {
                     "category":"Numbers",
                     "status":false,
+                    "image":"mode_icon_2",
                     "description":"",
-                    "subCategories":[{}]
+                    "subCategories":[
+                        {
+                            "title": "Conitnidad",
+                            "category":"Numbers",
+                            "image":"mode_icon_2",
+                            "config":{
+                                    "fullWord":false,
+                                    "difficulty":"easy",
+                                    "timeRemaining":30,
+                                    "random":false,
+                                    "bonusWord":5,
+                                    "point":1,
+                                    "cursedWord":1
+                            },
+                            "words": [
+                                "1234",
+                                "2345",
+                                "3456",
+                                "4567",
+                                "5678",
+                                "6789",
+                                "78910"
+                            ],
+                            "findDifference":[],
+                            "status": true
+                        }
+                    ]
                 },
                 {
-                    "category":"Visuals",
+                    "category":"Letters",
                     "status":false,
+                    "image":"mode_icon_3",
                     "description":"",
-                    "subCategories":[{}]
+                    "subCategories":[
+                        {
+                            "title": "Conitnidad",
+                            "category":"Letters",
+                            "image":"mode_icon_3",
+                            "config":{
+                                    "fullWord":false,
+                                    "difficulty":"easy",
+                                    "timeRemaining":0,
+                                    "random":false,
+                                    "bonusWord":5,
+                                    "point":1,
+                                    "cursedWord":1
+                            },
+                            "words": [
+                                "POPCORN",
+                                "WIZARD",
+                                "AKUAKU",
+                                "RAMIRT",
+                                "JOHN",
+                                "TANUKI",
+                                "WORKS"
+                            ],
+                            "findDifference":[],
+                            "status": true
+                        }
+                    ]
                 }
             ]
         }
