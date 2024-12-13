@@ -9,6 +9,7 @@ class ArrayWord{
         this.wrongChar = '';
         this._displayed = new Set();
         this.infoWord
+        this.randomIndex
     }
 
     // async loadData() {
@@ -47,6 +48,7 @@ class ArrayWord{
         }
         const randomIndex = Math.floor(Math.random() * availableWords.length);
         const randomWord = availableWords[randomIndex];
+        this.randomIndex = randomIndex;
         this.infoWord = availableWords[randomIndex];
         this.remaining = availableWords.filter(word => word !== this.infoWord );
         this._displayed.add(randomWord);
@@ -60,33 +62,16 @@ class ArrayWord{
 
     makeArray(word){
         const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const numbers = '1234567890';
         var noWordArray;
         const array = Array.from({ length: this.rows }, () => Array(this.cols).fill(null));
         // console.log(array);
 
         const uniqueLetters = word.toUpperCase().split('');
-
-
-
-        if(!this.lvl['config'][0]['fullWord']){    
-                   
-            uniqueLetters.forEach(letter => {
-                let placed = false;            
-                    while (!placed) {
-                        const randomRow = Math.floor(Math.random() * this.rows);
-                        const randomCol = Math.floor(Math.random() * this.cols);
+        const uniqueNumbers = numbers.toUpperCase().split('');
+                    
         
-                        if (array[randomRow][randomCol] === null) {
-                            array[randomRow][randomCol] = letter;
-                            placed = true;
-                        }
-                    }
-            });
-        }else{
-            // console.log('Aqui se reemplazan por imagenes');
-            // console.log(this._data);
-            // console.log(array);
-
+        if(this.lvl['config']['fullWord'] || this.lvl['findDifference'].length > 0){
             noWordArray = this._data.map(itm => {
                 if(itm != word){
                     return itm;
@@ -99,20 +84,42 @@ class ArrayWord{
             while (!placed) {
                 const randomRow = Math.floor(Math.random() * this.rows);
                 const randomCol = Math.floor(Math.random() * this.cols);
-            
+                
                 if (array[randomRow][randomCol] === null) {
                     array[randomRow][randomCol] = word;
                     placed = true;
                 }
             }
+        }else{
+            // console.log(uniqueLetters);
+            uniqueLetters.forEach(letter => {
+                let placed = false;            
+                    while (!placed) {
+                        const randomRow = Math.floor(Math.random() * this.rows);
+                        const randomCol = Math.floor(Math.random() * this.cols);
+        
+                        if (array[randomRow][randomCol] === null) {
+                            array[randomRow][randomCol] = letter;
+                            
+                            placed = true;
+                        }
+                    }
+            });
+
         }
         for (let i = 0; i < this.rows; i++) {
             for (let j = 0; j < this.cols; j++) {
                 if (array[i][j] === null) {
-                    if(!this.lvl['config'][0]['fullWord']){  
-                        array[i][j] = alphabet[Math.floor(Math.random() * alphabet.length)];
-                    }else{
+                    if(this.lvl['config']['fullWord'] && this.lvl['findDifference'].length == 0){  
                         array[i][j] = noWordArray[Math.floor(Math.random() * noWordArray.length)];
+                    }else if(this.lvl['config']['fullWord'] && this.lvl['findDifference'].length > 0){  
+                        array[i][j] = this.lvl['findDifference'][this.randomIndex];    
+                    }else{
+                        if(this.lvl['category'] == 'Numbers'){
+                            array[i][j] = numbers[Math.floor(Math.random() * numbers.length)];
+                        }else if(this.lvl['category'] == 'Letters'){
+                            array[i][j] = alphabet[Math.floor(Math.random() * alphabet.length)];
+                        }
                     }
                 }
             }

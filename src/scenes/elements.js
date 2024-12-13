@@ -10,6 +10,17 @@ export class elements extends Phaser.Scene{
         scene.add.image(0+basic_padding, 0+basic_padding, 'btn_config').setOrigin(0,0).setScale(default_scale);
     }
 
+    mainModes(scene){
+        originScreen=[];
+        scene.scene.start("selectModeScene");
+    }
+
+    closeButton(scene){
+        scene.add.image(0+basic_padding, 0+basic_padding, 'btn_close').setOrigin(0,0).setScale(default_scale).setInteractive().on("pointerdown", () => {
+            this.mainModes(scene);
+        });
+    }
+
     showBtnReturn(scene,origin){//origin: a donde vamos a regresar
         scene.add.image(0+basic_padding, 0+basic_padding, 'btn_return').setOrigin(0,0).setScale(default_scale).setInteractive().on("pointerdown", () => {
             
