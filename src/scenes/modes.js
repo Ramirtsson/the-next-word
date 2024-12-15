@@ -12,7 +12,10 @@ export class selectModeScene extends Phaser.Scene{
         elements.getBackground(this,"bg_modes");
         this.add.image(mid_w, basic_padding, "modes_title").setOrigin(.5,0).setScale(.5);
         elements.showBtnChallenges(this);
-        elements.showBtnProfile(this);
+        this.howto = elements.showBtnProfile(this);
+        this.howto.on("pointerdown", (() => {
+            this.scene.start('howtoPlay');  
+        }),this);
         //elements.showBtnReturn(this,originScreen);
         //elements.showBtnMoney(this);
 
