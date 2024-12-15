@@ -1,9 +1,9 @@
-var width=490;
-var height=735;
-if (window.innerWidth>window.innerHeight) {
+var width=window.innerWidth;
+var height=window.innerHeight;
+/*if (window.innerWidth>window.innerHeight) {
 	width=735;
 	height=490;
-}
+}*/
 
 let mid_w=width/2;
 let mid_h=height/2;

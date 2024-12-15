@@ -83,6 +83,36 @@
                             "findDifference":[],
                             "status": true
                         },{
+                            "title": "Horror Movies",
+                            "category":"Visuals",
+                            "image":"icon_horror_movies",
+                            "config":{
+                                    "fullWord":true,
+                                    "difficulty":"easy",
+                                    "timeRemaining":30,
+                                    "random":false,
+                                    "bonusWord":5,
+                                    "point":1,
+                                    "cursedWord":1,
+                                    "folder":"horror_movies"
+                            },
+                            "words": [
+                                "HELLRAISER",
+                                "SAW",
+                                "HALLOWEEN",
+                                "NOSFERATU",
+                                "FRIDAY THE 13TH",
+                                "IT",
+                                "FRANKENSTEIN",
+                                "SCREAM",
+                                "ANNABELLE",
+                                "A NIGHTMARE ON ELM STREET",
+                                "THE INVISIBLE MAN",
+                                "JEKYL&HIDE"
+                            ],
+                            "findDifference":[],
+                            "status": true
+                        },{
                             "title": "Fruits & Veggies",
                             "category":"Visuals",
                             "image":"icon_f_v",
