@@ -41,7 +41,12 @@ export class inGameScene extends Phaser.Scene{
         })
         if(this.lvl['config']['fullWord'] || this.lvl['findDifference'].length > 0){
             this.words.forEach((el) =>{
-                this.load.image(el.toLowerCase(), 'assets/sprites/icons/'+el.toLowerCase()+'.png');
+                if (this.lvl['config']['folder']) {
+                    this.load.image(el.toLowerCase(), 'assets/sprites/icons/'+this.lvl['config']['folder']+"/"+el.toLowerCase()+'.png');
+                }else{
+                    this.load.image(el.toLowerCase(), 'assets/sprites/icons/'+el.toLowerCase()+'.png');
+                }
+                
             });
         }
 
