@@ -9,11 +9,6 @@ export class preloadScene extends Phaser.Scene{
     {
         const elements = this.scene.get('elements');
         elements.drawLoadingScreen(this)
-        
-        // console.log(levels);
-        
-
-        
     }
 
     preload(){
@@ -46,15 +41,23 @@ export class preloadScene extends Phaser.Scene{
             this.load.image('icon_fruits', 'assets/game/icon_fruits.png');
             this.load.image('icon_planets', 'assets/game/icon_planets.png');
             this.load.image('icon_weather', 'assets/game/icon_weather.png');
+            this.load.image('icon_candy', 'assets/game/icon_candy.png');
+            this.load.image('icon_holidays', 'assets/game/icon_holidays.png');
 
             
 
             //graficos genericos usables en cualquier lado
             this.load.image('btn_return', 'assets/game/btn_return.png');
+            this.load.image('btn_return_alt', 'assets/game/btn_return_alt.png');
             this.load.image('main_challenges', 'assets/game/main_challenges.png');
             this.load.image('main_profile', 'assets/game/main_profile.png');
             this.load.image('btn_config', 'assets/game/config.png');
             this.load.image('btn_add_coins', 'assets/game/add_coins.png');
+
+            //quick tuto
+            this.load.atlas("howto_anim", "assets/game/how_to_quick/howto.png","assets/game/how_to_quick/howto.json");
+            this.load.atlas("pet_1_anim", "assets/game/pet_1/pet_1.png","assets/game/pet_1/pet_1.json");
+            this.load.image('btn_got_it', 'assets/game/btn_got_it.png');
         
 
     }

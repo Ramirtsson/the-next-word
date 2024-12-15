@@ -11,7 +11,7 @@ export class bootLoader extends Phaser.Scene{
     {
         //esto es para cargar el fondo y el logo del preloader
         this.load.image('bg_preload', 'assets/game/bg_preload.png');
-        this.load.image('logo', 'assets/game/logo.png');
+        this.load.image('loading', 'assets/game/loading.png');
 
         levels = getLevels();
 

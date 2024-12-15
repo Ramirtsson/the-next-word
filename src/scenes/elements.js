@@ -60,6 +60,18 @@ export class elements extends Phaser.Scene{
     drawLoadingScreen(scene){
         //  We loaded this image in our Boot Scene, so we can display it here
         scene.add.image(0, 0, "bg_preload").setOrigin(0,0).setDisplaySize(width,height);
+        var loading=scene.add.image(mid_w, mid_h-(mid_h/2), "loading").setOrigin(.5,.5).setScale(.5);
+
+        scene.tweens.add({
+            targets: loading,
+            y: loading.y + 25,
+            duration: 1000,
+            ease: 'Quad.easeInOut',
+            easeParams: [],
+            yoyo:true,
+            repeat:-1
+          });
+
         //  A simple progress bar. This is the outline of the bar.
         scene.add.rectangle(mid_w, mid_h+(mid_h/2), 468, 32).setStrokeStyle(1, 0xffffff);
         //  This is the progress bar itself. It will increase in size from the left based on the % of progress.
