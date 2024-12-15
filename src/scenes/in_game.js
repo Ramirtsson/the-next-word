@@ -12,7 +12,7 @@ export class inGameScene extends Phaser.Scene{
 
     init(data) {
         const elements = this.scene.get('elements');
-        
+        elements.drawLoadingScreen(this)
         // Recibe los datos pasados desde EscenaOrigen
         this.words = data.words || 'Desconocido';
         this.lvl = data.lvl;
@@ -51,9 +51,44 @@ export class inGameScene extends Phaser.Scene{
         const elements = this.scene.get('elements');
         elements.getBackground(this,"bg_game");
         elements.showBtnReturn(this,originScreen);
+
+        if (firstTime) {
+            firstTime=false;
+            this.anims.create({ key : "howto_anim_play",frames: this.anims.generateFrameNames("howto_anim",{start: 1,end:5}),repeat:-1});
+            this.anims.create({ key : "pet_1_anim_play",frames: this.anims.generateFrameNames("pet_1_anim",{start: 1,end:4}),repeat:-1});
+            var container = this.add.container(0,0);
+            var modal = this.add.rectangle(mid_w, mid_h, width-(mid_w/2), height-(mid_h/2), 0xffffff, .9);
+            var pet_1=this.physics.add.sprite(mid_w-(mid_w/4), mid_h+(mid_h/6), "pet_1").setScale(.6).setOrigin(.5,.5);
+            var howto=this.physics.add.sprite(mid_w+(mid_w/4), mid_h, "howto_anim").setScale(.6).setOrigin(.5,.5);
+            
+
+            container.add(modal);
+            container.add(pet_1);
+            container.add(howto);
+            container.add(this.add.image(mid_w, modal.getBounds().bottom, 'btn_got_it').setOrigin(.5,.5).setScale(default_scale*1.3).setInteractive().on("pointerdown", () => {
+                container.visible=false;
+                container.enable=false;
+                container.destroy();
+                this.drawBoard();
+            }));
+            container.add(this.add.text(mid_w, modal.getBounds().top , "How to Play", { fontFamily: 'Arial', fontSize: 50 }).setOrigin(.5, 0).setStroke('#000000',6));
+            
+            pet_1.anims.play("pet_1_anim_play",true);
+            pet_1.anims.msPerFrame = 1000;
+            howto.anims.play("howto_anim_play",true);
+            howto.anims.msPerFrame = 1000;
+                
+            
+        }else{
+            this.drawBoard()
+        }
+        
+        
         //elements.showBtnMoney(this);
-        this.drawBoard()
+        //this.drawBoard()
     }
+
+
 
     async drawBoard(){
 
@@ -949,6 +984,7 @@ export class inGameScene extends Phaser.Scene{
                                     });
                                 }else{
                                     foundLetter = true;
+                                    console.log(this.lvl);
                                     if(this.lvl['config']['difficulty'].toUpperCase() == 'EASY'){
                                         
                                         if(this.lvl['config']['timeRemaining'] > 0){

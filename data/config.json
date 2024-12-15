@@ -78,6 +78,7 @@
                                 "URANUS",
                                 "NEPTUNE"
                             ],
+                            "findDifference":[],
                             "status": true
                         },
                         {
@@ -110,6 +111,7 @@
                                 "CONE",
                                 "PYRAMID"
                             ],
+                            "findDifference":[],
                             "status": true
                         },
                         {
@@ -142,6 +144,7 @@
                                 "KIWI",
                                 "COCONUT"
                             ],
+                            "findDifference":[],
                             "status": true
                         },
                         {
@@ -173,6 +176,7 @@
                                 "DRIZZLY",
                                 "OVERCAST"
                             ],
+                            "findDifference":[],
                             "status": true
                         }
                     ]
@@ -206,10 +210,13 @@
                                 "78910"
                             ],
                             "findDifference":[],
+                            "findDifference":[],
                             "status": true
                         }
                     ]
                 },
+
+
                 {
                     "category":"Letters",
                     "status":false,
@@ -217,26 +224,164 @@
                     "description":"",
                     "subCategories":[
                         {
-                            "title": "Conitnidad",
+                            "title": "Human Body",
                             "category":"Letters",
-                            "image":"mode_icon_3",
-                            "config":{
-                                    "fullWord":false,
-                                    "difficulty":"easy",
-                                    "timeRemaining":0,
-                                    "random":false,
-                                    "bonusWord":5,
-                                    "point":1,
-                                    "cursedWord":1
+                            "image":"icon_human",
+                            "config":
+                            {
+                                "fullWord":false,
+                                "difficulty":"normal",
+                                "timeRemaining":40,
+                                "random":false,
+                                "bonusWord":10,
+                                "point":1,
+                                "cursedWord":1
+                            }
+                            ,
+                            "words": [
+                                "ARM",
+                                "LEG",
+                                "EYE",
+                                "LUNG",
+                                "SKIN",
+                                "BONE",
+                                "HEART",
+                                "BRAIN",
+                                "MUSCLE",
+                                "LIVER",
+                                "KIDNEY",
+                                "STOMACH",
+                                "SKELETON"
+                            ],
+                            "findDifference":[],
+                            "status": true
+                        },
+                        {
+                            "title": "Candy",
+                            "category":"Letters",
+                            "image":"icon_candy",
+                            "config":
+                            {
+                                "fullWord":false,
+                                "difficulty":"normal",
+                                "timeRemaining":40,
+                                "random":false,
+                                "bonusWord":10,
+                                "point":1,
+                                "cursedWord":1
+                            }
+                            ,
+                            "words": [
+
+                                "GUM",
+                                "CAKE",
+                                "SWEET",
+                                "FUDGE",
+                                "JELLY",
+                                "TOFFEE",
+                                "TRUFFLE",
+                                "BROWNIE",
+                                "CUPCAKE",
+                                "LOLLIPOP",
+                                "MARSHMALLOW",
+                                "JELLYBEAN",
+                                "BUTTERSCOTCH"
+                            ],
+                            "findDifference":[],
+                            "status": true
+                        },
+                        {
+                            "title": "Holidays",
+                            "category":"Letters",
+                            "image":"icon_holidays",
+                            "config":
+                            {
+                                "fullWord":false,
+                                "difficulty":"normal",
+                                "timeRemaining":40,
+                                "random":false,
+                                "bonusWord":10,
+                                "point":1,
+                                "cursedWord":1
                             },
                             "words": [
-                                "POPCORN",
-                                "WIZARD",
-                                "AKUAKU",
-                                "RAMIRT",
-                                "JOHN",
-                                "TANUKI",
-                                "WORKS"
+                                "CHRISTMAS",
+                                "THANKSGIVING",
+                                "HALLOWEEN",
+                                "EASTER",
+                                "NEWYEAR",
+                                "VALENTINES",
+                                "HANUKKAH",
+                                "RAMADAN",
+                                "DIWALI",
+                                "INDEPENDENCE",
+                                "VACATION",
+                                "HOLIDAY",
+                                "CELEBRATION"
+                            ],
+                            "findDifference":[],
+                            "status": true
+                        },
+                        {
+                            "title": "GAMER",
+                            "category":"Letters",
+                            "image":"icon_gamer",
+                            "config":
+                            {
+                                "fullWord":false,
+                                "difficulty":"normal",
+                                "timeRemaining":40,
+                                "random":false,
+                                "bonusWord":10,
+                                "point":1,
+                                "cursedWord":1
+                            },
+                            "words": [
+                                "BOSS",
+                                "LOOT",
+                                "LEVEL",
+                                "QUEST",
+                                "PLAYER",
+                                "AVATAR",
+                                "CONSOLE",
+                                "GRAPHICS",
+                                "JOYSTICK",
+                                "GAMEPLAY",
+                                "CONTROLLER",
+                                "MULTIPLAYER",
+                                "ACHIEVEMENT"
+                            ],
+                            "findDifference":[],
+                            "status": true
+                        },
+                        {
+                            "title": "REDDIT",
+                            "category":"Letters",
+                            "image":"icon_reddit",
+                            "config":
+                            {
+                                "fullWord":false,
+                                "difficulty":"normal",
+                                "timeRemaining":40,
+                                "random":false,
+                                "bonusWord":10,
+                                "point":1,
+                                "cursedWord":1
+                            },
+                            "words": [
+                                "SUB",
+                                "POST",
+                                "KARMA",
+                                "MOD",
+                                "VOTE",
+                                "THREAD",
+                                "REDDIT",
+                                "COMMENT",
+                                "UPVOTE",
+                                "DOWNVOTE",
+                                "COMMUNITY",
+                                "SUBREDDIT",
+                                "DISCUSSION"
                             ],
                             "findDifference":[],
                             "status": true
@@ -247,3 +392,4 @@
         }
     ]
 }
+
