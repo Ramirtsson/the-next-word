@@ -15,20 +15,29 @@ export class elements extends Phaser.Scene{
         scene.scene.start("selectModeScene");
     }
 
+    
+
     closeButton(scene){
         scene.add.image(0+basic_padding, 0+basic_padding, 'btn_close').setOrigin(0,0).setScale(default_scale).setInteractive().on("pointerdown", () => {
             this.mainModes(scene);
         });
     }
 
-    showBtnReturn(scene,origin){//origin: a donde vamos a regresar
+    showBtnReturn(scene,origin,custom){//origin: a donde vamos a regresar
         scene.add.image(0+basic_padding, 0+basic_padding, 'btn_return').setOrigin(0,0).setScale(default_scale).setInteractive().on("pointerdown", () => {
             
-            console.log(origin);
-            scene.scene.start(originScreen[origin.length-1]);
-            originScreen.pop();
+            if(origin){
+                // console.log(origin);
+                scene.scene.start(originScreen[origin.length-1]);
+                originScreen.pop();
+            }else{
+                originScreen=[];
+                scene.scene.start(custom);
+            }
         });
     }
+
+    
 
     showBtnMoney(scene,config=null){
         //agregar configuracion si es necesario por ejemplo posicion en x: config.x
@@ -49,7 +58,7 @@ export class elements extends Phaser.Scene{
     }
 
     showBtnProfile(scene,x=null, y=null){
-        scene.add.image(mid_w_q, height, 'main_profile').setOrigin(.5,1).setScale(default_scale*2);
+        return scene.add.image(mid_w_q, height, 'main_profile').setOrigin(.5,1).setScale(default_scale*2).setInteractive();        
     }
 
     getBackground(scene,bg){
