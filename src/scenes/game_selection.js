@@ -70,6 +70,7 @@ export class selectGameScene extends Phaser.Scene{
         for (var i = 0; i < scene.levels.length; i++) {
             var btn_level=scene.add.image(cols[index]-(col_size/2),row , this.levels[i].image).setOrigin(.5,0).setScale(default_scale+.1).setInteractive();
             var widthColsTitle;
+            this.levels[i]['title'] = this.levels[i]['title'].replaceAll(" ",'');
             var nameCategory = this.levels[i]['title'].split("");
             
             this.titlesCategory[this.levels[i]['title']] = [];
@@ -168,8 +169,10 @@ export class selectGameScene extends Phaser.Scene{
 
 
                                         this.playBtn[idx].on("pointerdown", ((pointer) => {
+                                            if(!originScreen.includes('selectGameScene')){
                                                 originScreen.push("selectGameScene");
                                                 this.scene.start("inGameScene", { words: lvl.words, lvl: lvl });
+                                            }
                                         }),this);
                                     })
                                     

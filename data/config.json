@@ -142,7 +142,7 @@
                             "findDifference":[],
                             "status": true
                         },{
-                            "title": "Fruits & Veggies",
+                            "title": "FruitsVeggies",
                             "category":"Visuals",
                             "image":"icon_f_v",
                             "config":{
