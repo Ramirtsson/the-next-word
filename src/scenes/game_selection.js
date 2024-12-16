@@ -110,7 +110,7 @@ export class selectGameScene extends Phaser.Scene{
     }
 
     showLevelContainer(page){
-        console.log(btn_lv_back);
+        // console.log(btn_lv_back);
         for (var i = 0; i < levelScreens.length; i++) {
             btn_lv_back.setTexture("btn_return")
             btn_lv_next.setTexture("btn_return");
