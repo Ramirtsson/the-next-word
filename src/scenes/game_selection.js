@@ -57,25 +57,31 @@ export class selectGameScene extends Phaser.Scene{
         var countItems=0;
         var row=height/4;
         var si_entra=false;
+        
         var scrollContainer = this.add.container(0,0);
+
         this.screenSelection = this.add.rectangle(window.innerWidth/2,window.innerHeight/2,window.innerWidth,window.innerHeight,0x000000,1).setOrigin(0.5,0.5).setDepth(0).setInteractive();
 
         // console.log(this.levels);
         this.titlesCategory = [];
         this.letsPlay = ['P','L','A','Y'];
         this.screenSelection.setAlpha(0);
+        this.playBtn = [];
         for (var i = 0; i < scene.levels.length; i++) {
             var btn_level=scene.add.image(cols[index]-(col_size/2),row , this.levels[i].image).setOrigin(.5,0).setScale(default_scale+.1).setInteractive();
             var widthColsTitle;
             var nameCategory = this.levels[i]['title'].split("");
+            
             this.titlesCategory[this.levels[i]['title']] = [];
             
-            this.playBtn = [];
+            
             var middleBtnPlay;
 
+            var playContainer = this.add.container(0,0)
+
             this.letsPlay.forEach((el,idx) =>{
-                this.playBtn[idx] = this.add.image(window.innerWidth/2,window.innerHeight/2+window.innerHeight/6,el).setScale(this.scaleToken-0.1).setOrigin(0.5,0.5).setDepth(5).setInteractive();
-               middleBtnPlay = this.playBtn[idx].displayWidth * this.letsPlay.length;
+                this.playBtn[idx] = this.add.image(window.innerWidth/2,window.innerHeight+window.innerHeight/2,el).setScale(this.scaleToken-0.1).setOrigin(0.5,0.5).setDepth(5).setInteractive();
+                middleBtnPlay = this.playBtn[idx].displayWidth * this.letsPlay.length;
 
                 if(idx == 0){
                     this.playBtn[idx].x = (window.innerWidth/2 - middleBtnPlay/2) + this.playBtn[idx].displayWidth/2;
@@ -83,41 +89,32 @@ export class selectGameScene extends Phaser.Scene{
                     this.playBtn[idx].x = this.playBtn[(idx-1)].x + middleBtnPlay/this.letsPlay.length;
                 }
 
-                this.playBtn[idx].on("pointerdown", ((pointer,words,lvl) => {
-                    pointer.event.stopPropagation();
-                    console.log(lvl);
-                    console.log(words);
-                    originScreen.push("selectGameScene");
-                    scene.scene.start("inGameScene", { words: words, lvl: lvl });
-                })
-                )
+                
+                
+                // playContainer.add(this.playBtn[idx]);
+            });
 
-            })
+            btn_level.playBtn=playContainer;//aca asigne el container a una variable del nivel, tecnicamente viaja con el nivel el boton de play
+            btn_level.playBtn.visible=false;//ivan aca oculte el container
+
             
 
 
             nameCategory.forEach((el,idx) => {
+                this.titlesCategory[this.levels[i]['title']][idx] = this.add.image(0,window.innerHeight+window.innerHeight/2,el.toUpperCase()).setScale(this.scaleToken).setOrigin(0.5,0.5).setDepth(6);
+                widthColsTitle = this.titlesCategory[this.levels[i]['title']][idx].displayWidth * nameCategory.length;
 
-
-                    this.titlesCategory[this.levels[i]['title']][idx] = this.add.image(0,window.innerHeight+window.innerHeight/2,el.toUpperCase()).setScale(this.scaleToken).setOrigin(0.5,0.5).setDepth(6);
-                    widthColsTitle = this.titlesCategory[this.levels[i]['title']][idx].displayWidth * nameCategory.length;
-
-                    if(idx == 0){
-                        this.titlesCategory[this.levels[i]['title']][idx].x = (window.innerWidth/2 - widthColsTitle/2) + this.titlesCategory[this.levels[i]['title']][idx].displayWidth/2;
-                    }else{
-                        this.titlesCategory[this.levels[i]['title']][idx].x = this.titlesCategory[this.levels[i]['title']][(idx-1)].x + widthColsTitle/nameCategory.length;
-                        // this.titlesCategory[this.levels[i]['title']][idx].x = this.titlesCategory[this.levels[i]['title']][(idx-1)].x + (this.titlesCategory[this.levels[i]['title']][idx].displayWidth - this.titlesCategory[this.levels[i]['title']][idx].displayWidth/4);
-                    }
-                    this.titlesCategory[this.levels[i]['title']][idx].setAngle(Math.random() * (30 - (-30)) + (-30));
-                    
-                
-
-
-
+                if(idx == 0){
+                    this.titlesCategory[this.levels[i]['title']][idx].x = (window.innerWidth/2 - widthColsTitle/2) + this.titlesCategory[this.levels[i]['title']][idx].displayWidth/2;
+                }else{
+                    this.titlesCategory[this.levels[i]['title']][idx].x = this.titlesCategory[this.levels[i]['title']][(idx-1)].x + widthColsTitle/nameCategory.length;
+                    // this.titlesCategory[this.levels[i]['title']][idx].x = this.titlesCategory[this.levels[i]['title']][(idx-1)].x + (this.titlesCategory[this.levels[i]['title']][idx].displayWidth - this.titlesCategory[this.levels[i]['title']][idx].displayWidth/4);
+                }
+                this.titlesCategory[this.levels[i]['title']][idx].setAngle(Math.random() * (30 - (-30)) + (-30));
             })
 
             
-            console.log(this.titlesCategory);
+            //console.log(this.titlesCategory);
             index++;
             if (index>2) {
                 index=0;
@@ -129,7 +126,9 @@ export class selectGameScene extends Phaser.Scene{
             btn_level.on("pointerdown", ((words,lvl) => {
                 return () => {
                     if (!this.isDragging) {
+                        
                         this.screenSelection.setDepth(5);
+                        this.letsPlay.visible=true;;
                         this.tweens.add({
                             targets: this.screenSelection,
                             alpha:0.2,
@@ -137,11 +136,27 @@ export class selectGameScene extends Phaser.Scene{
                             ease: 'Quart.easeInOut',        
                             repeat: 0,         
                             onComplete: function () {
-                                
+                                btn_level.playBtn.visible=true;
+                                btn_level.playBtn.setDepth(10);
                             }
                         });
                         this.youyouStange = [];
                         this.titlesCategory[lvl['title']].forEach((el,idx) => {
+
+                            this.playBtn.forEach((el, idx) => {
+                                this.tweens.add({
+                                    targets: this.playBtn[idx],
+                                    y:window.innerHeight/2+window.innerHeight/6,
+                                    duration: 500,
+                                    delay:100*idx,
+                                    ease: 'Quart.easeInOut', 
+                                    yoyo:false,       
+                                    repeat: 0,         
+                                    onComplete: function () {   
+                                    }
+                                }); 
+                            });
+
                             this.tweens.add({
                                 targets: this.titlesCategory[lvl['title']][idx],
                                 y:window.innerHeight/2,
@@ -149,6 +164,15 @@ export class selectGameScene extends Phaser.Scene{
                                 ease: 'Quart.easeInOut',        
                                 repeat: 0,         
                                 onComplete: () => {
+                                    this.playBtn.forEach((el, idx) => {
+
+
+                                        this.playBtn[idx].on("pointerdown", ((pointer) => {
+                                                originScreen.push("selectGameScene");
+                                                this.scene.start("inGameScene", { words: lvl.words, lvl: lvl });
+                                        }),this);
+                                    })
+                                    
 
                                     this.youyouStange[idx] = this.tweens.add({
                                         targets: this.titlesCategory[lvl['title']][idx],
@@ -158,7 +182,7 @@ export class selectGameScene extends Phaser.Scene{
                                         ease: 'Quad.easeInOut', 
                                         yoyo:true,       
                                         repeat: -1,         
-                                        onComplete: function () {                                            
+                                        onComplete: function () {   
                                         }
                                     }); 
 
@@ -173,7 +197,19 @@ export class selectGameScene extends Phaser.Scene{
                             this.youyouStange.forEach((el,idx) => {
                                 this.youyouStange[idx].destroy();
                             })
-
+                            this.playBtn.forEach((el, idx) => {
+                                this.tweens.add({
+                                    targets: this.playBtn[idx],
+                                    y:window.innerHeight+window.innerHeight/2,
+                                    duration: 500,
+                                    delay:100,
+                                    ease: 'Quart.easeInOut', 
+                                    yoyo:false,       
+                                    repeat: 0,         
+                                    onComplete: function () {   
+                                    }
+                                }); 
+                            });
 
                             this.tweens.add({
                                 targets: this.screenSelection,
@@ -192,6 +228,7 @@ export class selectGameScene extends Phaser.Scene{
                                             ease: 'Quart.easeInOut',        
                                             repeat: 0,         
                                             onComplete: () => {
+                                                btn_level.playBtn.visible=false;
                                                 this.screenSelection.setDepth(0);
                                                 this.screenSelection.setAlpha(0);                                                
                                                 this.titlesCategory[lvl['title']][idx].y = window.innerHeight+window.innerHeight/2; 
