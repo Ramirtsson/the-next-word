@@ -214,8 +214,9 @@ export class inGameScene extends Phaser.Scene{
                 // if(this.wordsImage[pos]) this.wordsImage[pos].destroy();
 
                 if(this.lvl['config']['fullWord'] || this.lvl['findDifference'].length > 0){
-                    this.wordsImage[pos] = this.add.image(100, 100, 'SPECIAL').setScale(this.scaleToken).setOrigin(0.5,0.5).setInteractive();
-                    this.wordsImage[pos]['icon'] = this.add.image(100, 100, cel.toLowerCase()).setScale(this.wordsImage[pos].scale/6).setOrigin(0.5,0.5).setDepth(1);
+                    this.wordsImage[pos] = this.add.image(100, 100, 'SPECIAL').setScale(this.scaleToken*1.1).setOrigin(0.5,0.5).setInteractive();
+
+                    this.wordsImage[pos]['icon'] = this.add.image(100, 100, cel.toLowerCase()).setScale(this.wordsImage[pos].scale/4.45).setOrigin(0.5,0.5).setDepth(1);
                     this.wordsImage[pos]['icon'].y = height+(height/2);
                 }else{
                     this.wordsImage[pos] = this.add.image(100, 100, cel).setScale(this.scaleToken).setOrigin(0.5,0.5).setInteractive();
