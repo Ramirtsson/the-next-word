@@ -48,8 +48,8 @@ export class preloadScene extends Phaser.Scene{
             this.load.image('icon_gamer', 'assets/game/icon_gamer.png');
             this.load.image('icon_pokemon', 'assets/game/icon_pokemon.png');
             this.load.image('icon_f_v', 'assets/game/icon_f_v.png');
-            this.load.image('icon_f_v', 'assets/game/icon_horror_movies.png');
-
+            this.load.image('icon_horror_movies', 'assets/game/icon_horror_movies.png');
+            this.load.image('icon_famous', 'assets/game/icon_famous.png');
             
 
             //graficos genericos usables en cualquier lado

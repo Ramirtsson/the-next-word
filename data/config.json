@@ -113,6 +113,35 @@
                             "findDifference":[],
                             "status": true
                         },{
+                            "title": "Famous People",
+                            "category":"Visuals",
+                            "image":"icon_famous",
+                            "config":{
+                                    "fullWord":true,
+                                    "difficulty":"easy",
+                                    "timeRemaining":30,
+                                    "random":false,
+                                    "bonusWord":5,
+                                    "point":1,
+                                    "cursedWord":1,
+                                    "folder":"famous",
+                                    "image_full":true
+                            },
+                            "words": [
+                                "MICHAEL JACKSON",
+                                "JACK NICHOLSON",
+                                "JOHN LENNON",
+                                "MARILYN MONROE",
+                                "ELVIS PRESLEY",
+                                "JOHNNY DEEP",
+                                "WILL SMITH",
+                                "CYNDI LAUPER",
+                                "DAVID BOWIE",
+                                "LADY GAGA"
+                            ],
+                            "findDifference":[],
+                            "status": true
+                        },{
                             "title": "Fruits & Veggies",
                             "category":"Visuals",
                             "image":"icon_f_v",
