@@ -171,6 +171,32 @@
                             ],
                             "findDifference":[],
                             "status": true
+                        },
+                        {
+                            "title": "Geometry",
+                            "category":"Visuals",
+                            "image":"icon_g_v",
+                            "config":{
+                                    "fullWord":true,
+                                    "difficulty":"easy",
+                                    "timeRemaining":30,
+                                    "random":false,
+                                    "bonusWord":5,
+                                    "point":1,
+                                    "cursedWord":1,
+                                    "folder":"geometry"
+                            },
+                            "words": [
+                                "DIAMOND",
+                                "CUBE",
+                                "CYLINDER",
+                                "HEXAGON",
+                                "PYRAMID",
+                                "STAR",
+                                "TRAPEZE"
+                            ],
+                            "findDifference":[],
+                            "status": true
                         }
                     ]
                 },
@@ -217,13 +243,13 @@
                     "description":"",
                     "subCategories":[
                         {
-                            "title": "Human Body",
+                            "title": "HumanBody",
                             "category":"Letters",
                             "image":"icon_human",
                             "config":
                             {
                                 "fullWord":false,
-                                "difficulty":"normal",
+                                "difficulty":"EASY",
                                 "timeRemaining":40,
                                 "random":false,
                                 "bonusWord":10,
@@ -256,7 +282,7 @@
                             "config":
                             {
                                 "fullWord":false,
-                                "difficulty":"normal",
+                                "difficulty":"EASY",
                                 "timeRemaining":40,
                                 "random":false,
                                 "bonusWord":10,
@@ -290,7 +316,7 @@
                             "config":
                             {
                                 "fullWord":false,
-                                "difficulty":"normal",
+                                "difficulty":"EASY",
                                 "timeRemaining":40,
                                 "random":false,
                                 "bonusWord":10,
@@ -322,7 +348,7 @@
                             "config":
                             {
                                 "fullWord":false,
-                                "difficulty":"normal",
+                                "difficulty":"EASY",
                                 "timeRemaining":40,
                                 "random":false,
                                 "bonusWord":10,
@@ -354,7 +380,7 @@
                             "config":
                             {
                                 "fullWord":false,
-                                "difficulty":"normal",
+                                "difficulty":"EASY",
                                 "timeRemaining":40,
                                 "random":false,
                                 "bonusWord":10,
@@ -385,7 +411,7 @@
                             "config":[
                                 {
                                     "fullWord":false,
-                                    "difficulty":"hard",
+                                    "difficulty":"EASY",
                                     "timeRemaining":30,
                                     "random":false,
                                     "bonusWord":5,
@@ -420,7 +446,7 @@
                             "config":[
                                 {
                                     "fullWord":false,
-                                    "difficulty":"hard",
+                                    "difficulty":"EASY",
                                     "timeRemaining":30,
                                     "random":false,
                                     "bonusWord":5,
@@ -449,7 +475,7 @@
                             "config":[
                                 {
                                     "fullWord":false,
-                                    "difficulty":"normal",
+                                    "difficulty":"EASY",
                                     "timeRemaining":30,
                                     "random":false,
                                     "bonusWord":5,
@@ -483,7 +509,7 @@
                             "config":[
                                 {
                                     "fullWord":false,
-                                    "difficulty":"normal",
+                                    "difficulty":"EASY",
                                     "timeRemaining":30,
                                     "random":false,
                                     "bonusWord":5,

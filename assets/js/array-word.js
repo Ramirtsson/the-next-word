@@ -64,10 +64,17 @@ class ArrayWord{
         const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         const numbers = '1234567890';
         var noWordArray;
-        const array = Array.from({ length: this.rows }, () => Array(this.cols).fill(null));
-        // console.log(array);
+        if(this.lvl['category'] == 'DEMO'){
+           this.cols = 5;
+           this.rows = 5;
+        }
+        var array = Array.from({ length: this.rows }, () => Array(this.cols).fill(null));
 
+        // console.log(array);
+        
+        
         const uniqueLetters = word.toUpperCase().split('');
+        // console.log(uniqueLetters);
         const uniqueNumbers = numbers.toUpperCase().split('');
                     
         
@@ -105,7 +112,7 @@ class ArrayWord{
                         }
                     }
             });
-
+            // console.log(array);
         }
         for (let i = 0; i < this.rows; i++) {
             for (let j = 0; j < this.cols; j++) {
@@ -117,8 +124,10 @@ class ArrayWord{
                     }else{
                         if(this.lvl['category'] == 'Numbers'){
                             array[i][j] = numbers[Math.floor(Math.random() * numbers.length)];
-                        }else if(this.lvl['category'] == 'Letters'){
+                        }else if(this.lvl['category'] == 'Letters' || this.lvl['category'] == 'DEMO'){
                             array[i][j] = alphabet[Math.floor(Math.random() * alphabet.length)];
+                            // console.log(alphabet[Math.floor(Math.random() * alphabet.length)]);
+                            // console.log(array);
                         }
                     }
                 }
