@@ -117,7 +117,7 @@ class ArrayWord{
         for (let i = 0; i < this.rows; i++) {
             for (let j = 0; j < this.cols; j++) {
                 if (array[i][j] === null) {
-                    if(this.lvl['config']['fullWord'] && this.lvl['findDifference'].length == 0){  
+                    if(this.lvl['config']['fullWord']){  
                         array[i][j] = noWordArray[Math.floor(Math.random() * noWordArray.length)];
                     }else if(this.lvl['config']['fullWord'] && this.lvl['findDifference'].length > 0){  
                         array[i][j] = this.lvl['findDifference'][this.randomIndex];    

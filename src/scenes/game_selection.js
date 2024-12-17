@@ -60,40 +60,23 @@ export class selectGameScene extends Phaser.Scene{
         
         var scrollContainer = this.add.container(0,0);
 
-        this.screenSelection = this.add.rectangle(window.innerWidth/2,window.innerHeight/2,window.innerWidth,window.innerHeight,0x000000,1).setOrigin(0.5,0.5).setDepth(0).setInteractive();
+        
 
         // console.log(this.levels);
         this.titlesCategory = [];
         this.letsPlay = ['P','L','A','Y'];
-        this.screenSelection.setAlpha(0);
+        
         this.playBtn = [];
         for (var i = 0; i < scene.levels.length; i++) {
             var btn_level=scene.add.image(cols[index]-(col_size/2),row , this.levels[i].image).setOrigin(.5,0).setScale(default_scale+.1).setInteractive();
             var widthColsTitle;
-            this.levels[i]['title'] = this.levels[i]['title'].replaceAll(" ",'');
-            var nameCategory = this.levels[i]['title'].split("");
-            
-            this.titlesCategory[this.levels[i]['title']] = [];
             
             
             var middleBtnPlay;
 
             var playContainer = this.add.container(0,0)
 
-            this.letsPlay.forEach((el,idx) =>{
-                this.playBtn[idx] = this.add.image(window.innerWidth/2,window.innerHeight+window.innerHeight/2,el).setScale(this.scaleToken-0.1).setOrigin(0.5,0.5).setDepth(5).setInteractive();
-                middleBtnPlay = this.playBtn[idx].displayWidth * this.letsPlay.length;
-
-                if(idx == 0){
-                    this.playBtn[idx].x = (window.innerWidth/2 - middleBtnPlay/2) + this.playBtn[idx].displayWidth/2;
-                }else{
-                    this.playBtn[idx].x = this.playBtn[(idx-1)].x + middleBtnPlay/this.letsPlay.length;
-                }
-
-                
-                
-                // playContainer.add(this.playBtn[idx]);
-            });
+            
 
             btn_level.playBtn=playContainer;//aca asigne el container a una variable del nivel, tecnicamente viaja con el nivel el boton de play
             btn_level.playBtn.visible=false;//ivan aca oculte el container
@@ -101,21 +84,11 @@ export class selectGameScene extends Phaser.Scene{
             
 
 
-            nameCategory.forEach((el,idx) => {
-                this.titlesCategory[this.levels[i]['title']][idx] = this.add.image(0,window.innerHeight+window.innerHeight/2,el.toUpperCase()).setScale(this.scaleToken).setOrigin(0.5,0.5).setDepth(6);
-                widthColsTitle = this.titlesCategory[this.levels[i]['title']][idx].displayWidth * nameCategory.length;
-
-                if(idx == 0){
-                    this.titlesCategory[this.levels[i]['title']][idx].x = (window.innerWidth/2 - widthColsTitle/2) + this.titlesCategory[this.levels[i]['title']][idx].displayWidth/2;
-                }else{
-                    this.titlesCategory[this.levels[i]['title']][idx].x = this.titlesCategory[this.levels[i]['title']][(idx-1)].x + widthColsTitle/nameCategory.length;
-                    // this.titlesCategory[this.levels[i]['title']][idx].x = this.titlesCategory[this.levels[i]['title']][(idx-1)].x + (this.titlesCategory[this.levels[i]['title']][idx].displayWidth - this.titlesCategory[this.levels[i]['title']][idx].displayWidth/4);
-                }
-                this.titlesCategory[this.levels[i]['title']][idx].setAngle(Math.random() * (30 - (-30)) + (-30));
-            })
+            
 
             
             //console.log(this.titlesCategory);
+            // popcorn
             index++;
             if (index>2) {
                 index=0;
@@ -127,7 +100,41 @@ export class selectGameScene extends Phaser.Scene{
             btn_level.on("pointerdown", ((words,lvl) => {
                 return () => {
                     if (!this.isDragging) {
-                        
+                        // console.log(lvl);
+                        this.screenSelection = this.add.rectangle(window.innerWidth/2,window.innerHeight/2,window.innerWidth,window.innerHeight,0x000000,1).setOrigin(0.5,0.5).setDepth(0).setInteractive();
+                        this.screenSelection.setAlpha(0);
+                        lvl['title'] = lvl['title'].replaceAll(" ",'');
+                        var nameCategory = lvl['title'].split("");
+                        this.titlesCategory[lvl['title']] = [];
+                        nameCategory.forEach((el,idx) => {
+                            this.titlesCategory[lvl['title']][idx] = this.add.image(0,window.innerHeight+window.innerHeight/2,el.toUpperCase()).setScale(this.scaleToken).setOrigin(0.5,0.5).setDepth(6);
+                            widthColsTitle = this.titlesCategory[lvl['title']][idx].displayWidth * nameCategory.length;
+            
+                            if(idx == 0){
+                                this.titlesCategory[lvl['title']][idx].x = (window.innerWidth/2 - widthColsTitle/2) + this.titlesCategory[lvl['title']][idx].displayWidth/2;
+                            }else{
+                                this.titlesCategory[lvl['title']][idx].x = this.titlesCategory[lvl['title']][(idx-1)].x + widthColsTitle/nameCategory.length;
+                                // this.titlesCategory[this.levels[i]['title']][idx].x = this.titlesCategory[this.levels[i]['title']][(idx-1)].x + (this.titlesCategory[this.levels[i]['title']][idx].displayWidth - this.titlesCategory[this.levels[i]['title']][idx].displayWidth/4);
+                            }
+                            this.titlesCategory[lvl['title']][idx].setAngle(Math.random() * (30 - (-30)) + (-30));
+                        })
+
+                        this.letsPlay.forEach((el,idx) =>{
+                            this.playBtn[idx] = this.add.image(window.innerWidth/2,window.innerHeight+window.innerHeight/2,el).setScale(this.scaleToken-0.1).setOrigin(0.5,0.5).setDepth(5).setInteractive();
+                            middleBtnPlay = this.playBtn[idx].displayWidth * this.letsPlay.length;
+            
+                            if(idx == 0){
+                                this.playBtn[idx].x = (window.innerWidth/2 - middleBtnPlay/2) + this.playBtn[idx].displayWidth/2;
+                            }else{
+                                this.playBtn[idx].x = this.playBtn[(idx-1)].x + middleBtnPlay/this.letsPlay.length;
+                            }
+            
+                            
+                            
+                            // playContainer.add(this.playBtn[idx]);
+                        });
+
+
                         this.screenSelection.setDepth(5);
                         this.letsPlay.visible=true;;
                         this.tweens.add({
@@ -167,10 +174,11 @@ export class selectGameScene extends Phaser.Scene{
                                 onComplete: () => {
                                     this.playBtn.forEach((el, idx) => {
 
-
+                                        
                                         this.playBtn[idx].on("pointerdown", ((pointer) => {
                                             if(!originScreen.includes('selectGameScene')){
                                                 originScreen.push("selectGameScene");
+                                                
                                                 this.scene.start("inGameScene", { words: lvl.words, lvl: lvl });
                                             }
                                         }),this);
@@ -193,55 +201,68 @@ export class selectGameScene extends Phaser.Scene{
                             });
                                 
                         })
+                        setTimeout(() => {
+                            this.screenSelection.on('pointerdown',(pointer) => {
+                                pointer.event.stopPropagation(); 
 
-                        this.screenSelection.on('pointerdown',(pointer) => {
-                            pointer.event.stopPropagation(); 
+                                this.youyouStange.forEach((el,idx) => {
+                                    this.youyouStange[idx].destroy();
 
-                            this.youyouStange.forEach((el,idx) => {
-                                this.youyouStange[idx].destroy();
-                            })
-                            this.playBtn.forEach((el, idx) => {
+                                })
+                                
+                                this.playBtn.forEach((el, idx) => {
+                                    this.tweens.add({
+                                        targets: this.playBtn[idx],
+                                        y:window.innerHeight+window.innerHeight/2,
+                                        duration: 500,
+                                        delay:100,
+                                        ease: 'Quart.easeInOut', 
+                                        yoyo:false,       
+                                        repeat: 0,         
+                                        onComplete: function () {   
+                                            
+                                        }
+                                    }); 
+                                });
+
                                 this.tweens.add({
-                                    targets: this.playBtn[idx],
-                                    y:window.innerHeight+window.innerHeight/2,
-                                    duration: 500,
-                                    delay:100,
-                                    ease: 'Quart.easeInOut', 
-                                    yoyo:false,       
+                                    targets: this.screenSelection,
+                                    alpha:0,
+                                    depth:0,
+                                    duration: 200,
+                                    ease: 'Quart.easeInOut',        
                                     repeat: 0,         
-                                    onComplete: function () {   
+                                    onComplete: () => {
+
+                                        this.titlesCategory[lvl['title']].forEach((el,idx) => {
+                                            this.tweens.add({
+                                                targets: this.titlesCategory[lvl['title']][idx],
+                                                y:window.innerHeight+window.innerHeight/2,
+                                                duration: 200,
+                                                ease: 'Quart.easeInOut',        
+                                                repeat: 0,         
+                                                onComplete: () => {
+                                                    btn_level.playBtn.visible=false;
+                                                    
+                                                    this.screenSelection.setAlpha(0);
+                                                    
+                                                    this.titlesCategory.forEach((el,idx) => {
+                                                        this.titlesCategory[idx].destroy();
+                                                    }) 
+                                                    this.letsPlay.forEach((el,idx) =>{
+                                                        this.playBtn[idx].destroy();
+                                                    })     
+                                                    this.titlesCategory.forEach((el,idx) =>{
+                                                        this.titlesCategory[idx].destroy();
+                                                    })                                  
+                                                    this.screenSelection.destroy();
+                                                }
+                                            })    
+                                        })
                                     }
-                                }); 
-                            });
-
-                            this.tweens.add({
-                                targets: this.screenSelection,
-                                alpha:0,
-                                depth:0,
-                                duration: 200,
-                                ease: 'Quart.easeInOut',        
-                                repeat: 0,         
-                                onComplete: () => {
-
-                                    this.titlesCategory[lvl['title']].forEach((el,idx) => {
-                                        this.tweens.add({
-                                            targets: this.titlesCategory[lvl['title']][idx],
-                                            y:window.innerHeight+window.innerHeight/2,
-                                            duration: 200,
-                                            ease: 'Quart.easeInOut',        
-                                            repeat: 0,         
-                                            onComplete: () => {
-                                                btn_level.playBtn.visible=false;
-                                                this.screenSelection.setDepth(0);
-                                                this.screenSelection.setAlpha(0);                                                
-                                                this.titlesCategory[lvl['title']][idx].y = window.innerHeight+window.innerHeight/2; 
-                                            }
-                                        })    
-                                    })
-                                }
-                            });
-
-                        })
+                                });
+                            })
+                        },1000)
                     }
                 }
             })(scene.levels[i].words,scene.levels[i]), scene);
@@ -276,7 +297,7 @@ export class selectGameScene extends Phaser.Scene{
         
 
         btn_lv_back=this.add.image(mid_w_q, height-basic_padding, 'btn_return').setOrigin(.5,1).setScale(default_scale).setInteractive().on("pointerdown", () => {
-                console.log(origin);
+                // console.log(origin);
                 if (page>0) {
                     page--;
                     this.showLevelContainer(page)
@@ -285,7 +306,7 @@ export class selectGameScene extends Phaser.Scene{
         });
 
         btn_lv_next=this.add.image(mid_w+mid_w_q, height-basic_padding, 'btn_return').setOrigin(.5,1).setScale(default_scale).setInteractive().on("pointerdown", () => {
-                console.log(origin);
+                // console.log(origin);
                 if (page<levelScreens.length-1) {
                     page++;
                     this.showLevelContainer(page);
