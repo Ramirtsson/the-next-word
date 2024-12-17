@@ -37,6 +37,60 @@ export class elements extends Phaser.Scene{
         });
     }
 
+    noReturnWithoutAuth(scene,origin,custom){//origin: a donde vamos a regresar
+        
+        scene.add.image(0+basic_padding, 0+basic_padding, 'btn_return').setOrigin(0,0).setScale(default_scale).setInteractive().on("pointerdown", () => {
+            scene.exitDoor = scene.add.rectangle(window.innerWidth/2,window.innerHeight/2,window.innerWidth,window.innerHeight,0x000000,0.5).setOrigin(0.5,0.5).setDepth(5).setInteractive();
+            scene.disclaimer = scene.add.text(window.innerWidth/2, window.innerHeight/2, 
+            'ARE YOU SURE YOU WANT TO EXIT? YOR GAME WILL BE LOST.', { 
+                fontSize: '1rem',
+                fontFamily: "Fredoka",
+                stroke: '1px',
+                align:"center",
+            }).setOrigin(0.5,0.5).setDepth(5);
+
+            scene.yesOption = scene.add.text(scene.disclaimer.x, scene.disclaimer.y + scene.disclaimer.displayHeight*2, 
+                'YES', { 
+                    fontSize: '1rem',
+                    fontFamily: "Fredoka",
+                    stroke: '1px',
+                    align:"center",
+                }).setOrigin(0.5,0.5).setDepth(5).setInteractive().on("pointerdown", () => {
+                    originScreen=[];
+                    scene.scene.start("selectModeScene");
+
+                })
+
+            scene.noOption = scene.add.text(scene.yesOption.x, scene.yesOption.y + scene.yesOption.displayHeight*2, 
+                'NO', { 
+                    fontSize: '1rem',
+                    fontFamily: "Fredoka",
+                    stroke: '1px',
+                    align:"center",
+                }).setOrigin(0.5,0.5).setDepth(5).setInteractive().on("pointerdown", () => {
+                    setTimeout(() => {
+                        scene.exitDoor.destroy();
+                        scene.disclaimer.destroy();
+                        scene.yesOption.destroy();
+                        scene.noOption.destroy();
+                    }, 500);
+                })
+
+
+
+
+            // scene.timer.paused = true;  
+            // if(origin){
+            //     // console.log(origin);
+            //     scene.scene.start(originScreen[origin.length-1]);
+            //     originScreen.pop();
+            // }else{
+            //     originScreen=[];
+            //     scene.scene.start(custom);
+            // }
+        });
+    }
+
     
 
     showBtnMoney(scene,config=null){
