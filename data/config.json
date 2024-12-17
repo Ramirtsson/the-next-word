@@ -230,7 +230,7 @@
                             "status": true
                         },
                         {
-                            "title": "Soccer Teams",
+                            "title": "Soccer Stamps",
                             "category":"Visuals",
                             "image":"icon_soccer",
                             "config":{
@@ -244,48 +244,13 @@
                                     "folder":"soccer_teams"
                             },
                             "words": [
-                                "AMERICA",
-                                "BOCA JUNIORS",
-                                "COLO COLO",
-                                "CRUZ AZUL",
-                                "FLUMINENSE",
-                                "LA GALAXY",
-                                "LIVERPOOL",
-                                "MANCHESTER UNITED",
-                                "NAPOLI",
-                                "BAYERN MUNCHEN",
-                                "PUMAS",
-                                "RIVER PLATE"
-                            ],
-                            "findDifference":[],
-                            "status": true
-                        },
-                            {
-                            "title": "Cart Brand",
-                            "category":"Visuals",
-                            "image":"icon_car",
-                            "config":{
-                                    "fullWord":true,
-                                    "difficulty":"easy",
-                                    "timeRemaining":30,
-                                    "random":false,
-                                    "bonusWord":5,
-                                    "point":1,
-                                    "cursedWord":1,
-                                    "folder":"model_cars"
-                            },
-                            "words": [
-                                "ASTON MARTI",
-                                "BENTLEY",
-                                "BMW",
-                                "CHEVROLET",
-                                "DODGE",
-                                "FORD",
-                                "MAZDA",
-                                "MERCEDES BENZ",
-                                "PONTIAC",
-                                "TOYOTA",
-                                "VOLVO"
+                                "GERMANY",
+                                "BRAZIL",
+                                "ECUADOR",
+                                "JAPAN",
+                                "MEXICO",
+                                "SPAIN",
+                                "UNITEDSTATES"
                             ],
                             "findDifference":[],
                             "status": true
