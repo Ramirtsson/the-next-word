@@ -63,6 +63,8 @@ export class preloadScene extends Phaser.Scene{
 
             //quick tuto
             this.load.atlas("howto_anim", "assets/game/how_to_quick/howto.png","assets/game/how_to_quick/howto.json");
+            this.load.atlas("how_to_play_images_anim", "assets/game/how_to_play_images/how_to_play_images.png","assets/game/how_to_play_images/how_to_play_images.json");
+            this.load.atlas("how_to_play_numbers_anim", "assets/game/how_to_play_numbers/how_to_play_numbers.png","assets/game/how_to_play_numbers/how_to_play_numbers.json");
             this.load.atlas("pet_1_anim", "assets/game/pet_1/pet_1.png","assets/game/pet_1/pet_1.json");
             this.load.image('btn_got_it', 'assets/game/btn_got_it.png');
         
