@@ -287,7 +287,57 @@
                             ],
                             "findDifference":[],
                             "status": true
-                        }   
+                        },
+                        {
+                            "title": "Hundreds",
+                            "category":"Numbers",
+                            "image":"icon_hundred",
+                            "config":{
+                                    "fullWord":false,
+                                    "difficulty":"easy",
+                                    "timeRemaining":30,
+                                    "random":false,
+                                    "bonusWord":5,
+                                    "point":1,
+                                    "cursedWord":1
+                            },
+                            "words": [
+                                "100",
+                                "200",
+                                "300",
+                                "400",
+                                "500",
+                                "600",
+                                "700"
+                            ],
+                            "findDifference":[],
+                            "status": true
+                        },
+                        {
+                            "title": "FiboShort",
+                            "category":"Numbers",
+                            "image":"icon_fibo",
+                            "config":{
+                                    "fullWord":false,
+                                    "difficulty":"easy",
+                                    "timeRemaining":30,
+                                    "random":false,
+                                    "bonusWord":5,
+                                    "point":1,
+                                    "cursedWord":1
+                            },
+                            "words": [
+                                "0112",
+                                "35813",
+                                "2134",
+                                "5589",
+                                "144233",
+                                "377610",
+                                "9871597"
+                            ],
+                            "findDifference":[],
+                            "status": true
+                        }  
 
                     ]
                 },
