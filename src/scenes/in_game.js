@@ -55,7 +55,7 @@ export class inGameScene extends Phaser.Scene{
     create(){
         const elements = this.scene.get('elements');
         elements.getBackground(this,"bg_game");
-        elements.showBtnReturn(this,originScreen);
+        elements.noReturnWithoutAuth(this,originScreen);
 
         if (firstTime[this.lvl.category]) {
             const tutorialSelectedMap = {
