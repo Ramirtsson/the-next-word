@@ -57,15 +57,21 @@ export class inGameScene extends Phaser.Scene{
         elements.getBackground(this,"bg_game");
         elements.showBtnReturn(this,originScreen);
 
-        if (firstTime) {
-            firstTime=false;
-            this.anims.create({ key : "howto_anim_play",frames: this.anims.generateFrameNames("howto_anim",{start: 1,end:5}),repeat:-1});
+        if (firstTime[this.lvl.category]) {
+            const tutorialSelectedMap = {
+                "Visuals": ["how_to_play_images_anim", "howto_anim_play_images"],
+                "Numbers": ["how_to_play_numbers_anim", "howto_anim_play_numbers"],
+                "Letters": ["howto_anim", "howto_anim_play"]
+            };
+            firstTime[this.lvl.category] = false;
+            const imageTutorialByCategorySelected = tutorialSelectedMap[this.lvl.category] || [];
+            this.anims.create({ key : imageTutorialByCategorySelected[1],frames: this.anims.generateFrameNames(imageTutorialByCategorySelected[0],{start: 1,end:5}),repeat:-1});
             this.anims.create({ key : "pet_1_anim_play",frames: this.anims.generateFrameNames("pet_1_anim",{start: 1,end:4}),repeat:-1});
             var container = this.add.container(0,0);
             var modal = this.add.rectangle(mid_w, mid_h, width-(mid_w/2), height-(mid_h/2), 0xffffff, .9);
             var pet_1=this.physics.add.sprite(mid_w-(mid_w/4), mid_h+(mid_h/6), "pet_1").setScale(.6).setOrigin(.5,.5);
-            var howto=this.physics.add.sprite(mid_w+(mid_w/4), mid_h, "howto_anim").setScale(.6).setOrigin(.5,.5);
-            
+
+            var howto=this.physics.add.sprite(mid_w+(mid_w/4), mid_h,imageTutorialByCategorySelected[0]).setScale(.6).setOrigin(.5,.5);
 
             container.add(modal);
             container.add(pet_1);
@@ -78,9 +84,10 @@ export class inGameScene extends Phaser.Scene{
             }));
             container.add(this.add.text(mid_w, modal.getBounds().top , "How to Play", { fontFamily: 'Arial', fontSize: 50 }).setOrigin(.5, 0).setStroke('#000000',6));
             
+
             pet_1.anims.play("pet_1_anim_play",true);
             pet_1.anims.msPerFrame = 1000;
-            howto.anims.play("howto_anim_play",true);
+            howto.anims.play(imageTutorialByCategorySelected[1],true);
             howto.anims.msPerFrame = 1000;
                 
             

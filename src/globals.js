@@ -10,7 +10,11 @@ let mid_h=height/2;
 let mid_w_q=mid_w/2;
 let base_cols=3;
 let base_rows=3;
-var firstTime=true;
+var firstTime = {
+    "Visuals": true,
+    "Numbers": true,
+    "Letters": true
+};
 
 if (width>height) {
 	var default_scale=.3;
