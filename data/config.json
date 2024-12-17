@@ -83,7 +83,66 @@
                             "findDifference":[],
                             "status": true
                         },{
-                            "title": "Fruits & Veggies",
+                            "title": "Horror Movies",
+                            "category":"Visuals",
+                            "image":"icon_horror_movies",
+                            "config":{
+                                    "fullWord":true,
+                                    "difficulty":"easy",
+                                    "timeRemaining":30,
+                                    "random":false,
+                                    "bonusWord":5,
+                                    "point":1,
+                                    "cursedWord":1,
+                                    "folder":"horror_movies"
+                            },
+                            "words": [
+                                "HELLRAISER",
+                                "SAW",
+                                "HALLOWEEN",
+                                "NOSFERATU",
+                                "FRIDAY THE 13TH",
+                                "IT",
+                                "FRANKENSTEIN",
+                                "SCREAM",
+                                "ANNABELLE",
+                                "A NIGHTMARE ON ELM STREET",
+                                "THE INVISIBLE MAN",
+                                "JEKYL&HIDE"
+                            ],
+                            "findDifference":[],
+                            "status": true
+                        },{
+                            "title": "Famous People",
+                            "category":"Visuals",
+                            "image":"icon_famous",
+                            "config":{
+                                    "fullWord":true,
+                                    "difficulty":"easy",
+                                    "timeRemaining":30,
+                                    "random":false,
+                                    "bonusWord":5,
+                                    "point":1,
+                                    "cursedWord":1,
+                                    "folder":"famous",
+                                    "image_full":true
+                            },
+                            "words": [
+                                "MICHAEL JACKSON",
+                                "JACK NICHOLSON",
+                                "JOHN LENNON",
+                                "MARILYN MONROE",
+                                "ELVIS PRESLEY",
+                                "JOHNNY DEEP",
+                                "WILL SMITH",
+                                "CYNDI LAUPER",
+                                "DAVID BOWIE",
+                                "LADY GAGA"
+                            ],
+                            "findDifference":[],
+                            "status": true
+                        },{
+                            "title": "FruitsVeggies",
                             "category":"Visuals",
                             "image":"icon_f_v",
                             "config":{
@@ -109,6 +168,32 @@
                                 "ONION",
                                 "ORANGE",
                                 "STRAWBERRY"
+                            ],
+                            "findDifference":[],
+                            "status": true
+                        },
+                        {
+                            "title": "Geometry",
+                            "category":"Visuals",
+                            "image":"icon_g_v",
+                            "config":{
+                                    "fullWord":true,
+                                    "difficulty":"easy",
+                                    "timeRemaining":30,
+                                    "random":false,
+                                    "bonusWord":5,
+                                    "point":1,
+                                    "cursedWord":1,
+                                    "folder":"geometry"
+                            },
+                            "words": [
+                                "DIAMOND",
+                                "CUBE",
+                                "CYLINDER",
+                                "HEXAGON",
+                                "PYRAMID",
+                                "STAR",
+                                "TRAPEZE"
                             ],
                             "findDifference":[],
                             "status": true
@@ -158,13 +243,13 @@
                     "description":"",
                     "subCategories":[
                         {
-                            "title": "Human Body",
+                            "title": "HumanBody",
                             "category":"Letters",
                             "image":"icon_human",
                             "config":
                             {
                                 "fullWord":false,
-                                "difficulty":"normal",
+                                "difficulty":"EASY",
                                 "timeRemaining":40,
                                 "random":false,
                                 "bonusWord":10,
@@ -197,7 +282,7 @@
                             "config":
                             {
                                 "fullWord":false,
-                                "difficulty":"normal",
+                                "difficulty":"EASY",
                                 "timeRemaining":40,
                                 "random":false,
                                 "bonusWord":10,
@@ -231,7 +316,7 @@
                             "config":
                             {
                                 "fullWord":false,
-                                "difficulty":"normal",
+                                "difficulty":"EASY",
                                 "timeRemaining":40,
                                 "random":false,
                                 "bonusWord":10,
@@ -263,7 +348,7 @@
                             "config":
                             {
                                 "fullWord":false,
-                                "difficulty":"normal",
+                                "difficulty":"EASY",
                                 "timeRemaining":40,
                                 "random":false,
                                 "bonusWord":10,
@@ -295,7 +380,7 @@
                             "config":
                             {
                                 "fullWord":false,
-                                "difficulty":"normal",
+                                "difficulty":"EASY",
                                 "timeRemaining":40,
                                 "random":false,
                                 "bonusWord":10,
@@ -326,7 +411,7 @@
                             "config":[
                                 {
                                     "fullWord":false,
-                                    "difficulty":"hard",
+                                    "difficulty":"EASY",
                                     "timeRemaining":30,
                                     "random":false,
                                     "bonusWord":5,
@@ -361,7 +446,7 @@
                             "config":[
                                 {
                                     "fullWord":false,
-                                    "difficulty":"hard",
+                                    "difficulty":"EASY",
                                     "timeRemaining":30,
                                     "random":false,
                                     "bonusWord":5,
@@ -390,7 +475,7 @@
                             "config":[
                                 {
                                     "fullWord":false,
-                                    "difficulty":"normal",
+                                    "difficulty":"EASY",
                                     "timeRemaining":30,
                                     "random":false,
                                     "bonusWord":5,
@@ -424,7 +509,7 @@
                             "config":[
                                 {
                                     "fullWord":false,
-                                    "difficulty":"normal",
+                                    "difficulty":"EASY",
                                     "timeRemaining":30,
                                     "random":false,
                                     "bonusWord":5,
