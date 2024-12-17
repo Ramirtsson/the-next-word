@@ -34,11 +34,11 @@ export class inGameScene extends Phaser.Scene{
             this.load.image(el, 'assets/sprites/words/'+el.toLowerCase()+'.png');
             this.load.image(el+'_alt', 'assets/sprites/words/'+el.toLowerCase()+'_alt.png');
         })
-
         numbers.forEach((el) => {
             this.load.image(el, 'assets/sprites/words/'+el.toLowerCase()+'.png');
             this.load.image(el+'_alt', 'assets/sprites/words/'+el.toLowerCase()+'_alt.png');
         })
+        
         if(this.lvl['config']['fullWord'] || this.lvl['findDifference'].length > 0){
             this.words.forEach((el) =>{
                 if (this.lvl['config']['folder']) {

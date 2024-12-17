@@ -54,6 +54,8 @@ export class preloadScene extends Phaser.Scene{
             this.load.image('icon_country', 'assets/game/icon_country.png');
             this.load.image('icon_soccer', 'assets/game/icon_soccer.png');
             this.load.image('icon_car', 'assets/game/icon_car.png');
+            this.load.image('icon_hundred', 'assets/game/icon_hundred.png');
+            this.load.image('icon_fibo', 'assets/game/icon_fibo.png');
 
             
             //graficos genericos usables en cualquier lado
