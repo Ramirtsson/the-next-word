@@ -207,7 +207,7 @@
                     "description":"",
                     "subCategories":[
                         {
-                            "title": "Conitnidad",
+                            "title": "Series",
                             "category":"Numbers",
                             "image":"mode_icon_2",
                             "config":{
@@ -229,9 +229,9 @@
                                 "78910"
                             ],
                             "findDifference":[],
-                            "findDifference":[],
                             "status": true
-                        }
+                        }   
+
                     ]
                 },
 

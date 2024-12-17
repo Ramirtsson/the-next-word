@@ -207,7 +207,7 @@ export class inGameScene extends Phaser.Scene{
         
         
         this.board = this.add.rectangle(window.innerWidth/2,window.innerHeight/3,width/1.25,height/1.25,'0xffffff',0).setOrigin(0.5,0.5);
-        console.log(this.arrayWord);
+        // console.log(this.arrayWord);
         this.arrayWord.forEach((room,idx) => {
             room.forEach((cel,stp) => {
                 var pos = counter;
