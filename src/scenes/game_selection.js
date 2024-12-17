@@ -88,6 +88,7 @@ export class selectGameScene extends Phaser.Scene{
 
             
             //console.log(this.titlesCategory);
+            // popcorn
             index++;
             if (index>2) {
                 index=0;
