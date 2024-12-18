@@ -5,6 +5,12 @@ export class elements extends Phaser.Scene{
         super({key:'elements'});
     }
 
+    // create(){
+    //     elements.WorldMusic = this.sound.add('mainscreen').setLoop(true);
+    // }
+
+
+
     showBtnConfig(scene){
         //recibe la escena donde se va a mostrar el elemento
         scene.add.image(0+basic_padding, 0+basic_padding, 'btn_config').setOrigin(0,0).setScale(default_scale);
@@ -25,7 +31,9 @@ export class elements extends Phaser.Scene{
 
     showBtnReturn(scene,origin,custom){//origin: a donde vamos a regresar
         scene.add.image(0+basic_padding, 0+basic_padding, 'btn_return').setOrigin(0,0).setScale(default_scale).setInteractive().on("pointerdown", () => {
-            
+            if(scene.backgroundMusic) scene.backgroundMusic.pause();
+            if(worldAudio.play === false ){ worldAudio.play(); }
+            worldAudio.play();
             if(origin){
                 // console.log(origin);
                 scene.scene.start(originScreen[origin.length-1]);
@@ -57,6 +65,7 @@ export class elements extends Phaser.Scene{
                     align:"center",
                 }).setOrigin(0.5,0.5).setDepth(5).setInteractive().on("pointerdown", () => {
                     originScreen=[];
+                    worldAudio.play();
                     scene.scene.start("selectModeScene");
                     scene.backgroundMusic.pause();
                 })
@@ -153,8 +162,19 @@ export class elements extends Phaser.Scene{
         });
     }
 
+
+    
+    worldMusic(scene,mode){
+        worldAudio = this.sound.add('mainscreen').setLoop(true);
+        if(mode == 'play'){
+            worldAudio.play();  
+        }else{
+            worldAudio.pause(); 
+        }
+    }
+
     backgroundMusic(scene,mode){
-        if(!scene.backgroundMusic) scene.backgroundMusic = this.sound.add('inGame').setLoop(true);
+        if(!scene.backgroundMusic) scene.backgroundMusic = scene.sound.add('inGame').setLoop(true);
         if(mode == 'play'){
             scene.backgroundMusic.play();  
         }else{

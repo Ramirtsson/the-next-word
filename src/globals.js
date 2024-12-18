@@ -22,7 +22,7 @@ if (width>height) {
 	var default_scale=.2;
 }
 
-
+var worldAudio;
 
 let basic_padding=20;//padding para evitar que los elementos toquen las orillas;
 let col_size=(width-(basic_padding*base_cols))/base_cols;

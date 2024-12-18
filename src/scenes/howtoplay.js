@@ -11,6 +11,8 @@ export class howToPlay extends Phaser.Scene{
     init(data) {
         const elements = this.scene.get('elements');
         elements.drawLoadingScreen(this)
+        worldAudio.pause();
+        elements.backgroundMusic(this,'play');
         this.actionMoment = false;
         this.buildResult = ""; 
         // // Recibe los datos pasados desde EscenaOrigen
@@ -22,6 +24,12 @@ export class howToPlay extends Phaser.Scene{
     }
 
     preload() {
+
+        this.applauseSound = this.sound.add('applause');
+        this.coin = this.sound.add('coin')
+        this.cancel = this.sound.add('cancel')
+        this.success = this.sound.add('success')
+
         loadFont("Fredoka", "assets/fonts/Jua/Jua-Regular.ttf");
         const alphabt = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
         alphabt.forEach((el) => {
@@ -240,7 +248,7 @@ export class howToPlay extends Phaser.Scene{
     }
 
     shadowGuide(){
-        console.log(this.positionLetter);
+        // console.log(this.positionLetter);
         this.actionMoment=true;
         this.theaterCortain = this.add.rectangle(window.innerWidth/2,window.innerHeight/2,window.innerWidth,window.innerHeight,0x000000,1).setOrigin(0.5,0.5);
         this.blockScreen
@@ -315,7 +323,7 @@ export class howToPlay extends Phaser.Scene{
                     // this.buildResult = chara;
                     // target.setTexture("SPECIAL_alt");
                 }
-                console.log(this.buildResult);
+                // console.log(this.buildResult);
                 stepChar = this.buildResult.split('');
                 var foundLetter = false;
                 if(this.nextWord.infoWord.includes(chara)){
@@ -326,6 +334,7 @@ export class howToPlay extends Phaser.Scene{
                                 if(chara === uniqueLetters[idx] && idx == (this.buildResult.length-1)){
                                     
                                     // this.showScore('plus');
+                                    this.coin.play();
                                     foundLetter = true;
                                     this.SPECIALWORD[idx].used = true;
                                     this.wordsImage[step].setTexture(chara+"_alt");
@@ -393,7 +402,7 @@ export class howToPlay extends Phaser.Scene{
                                     });
                                 }else{
                                     foundLetter = true;
-                                    console.log(this.lvl);
+                                    // console.log(this.lvl);
                                     if(this.lvl['config']['difficulty'].toUpperCase() == 'EASY'){
                                         
                                             // this.showScore('wrong');
@@ -452,6 +461,7 @@ export class howToPlay extends Phaser.Scene{
     }
 
     finishTutorial(){
+        this.success.play();
         this.messageTwo.setText('CONGRATULATIONS! YOU`VE COMPLETED THE WORD!');
         this.tweens.add({
             targets: this.circle,   
@@ -465,6 +475,7 @@ export class howToPlay extends Phaser.Scene{
                 this.mask.destroy();
                 this.clearBoard();
                 setTimeout(() => {
+                    this.applauseSound.play();
                     this.messageTwo.setText('YOU WILL EARN POINTS BY FINDING LETTERS, NUMBERS, OR SOMETIMES THE GRAPHIC REPRESENTATION OF THE WORD.');
                     this.messageThree = this.add.text(window.innerWidth/2, window.innerHeight/2, 
                         'THANK YOU FOR YOUR TIME, AND WE HOPE YOU ENJOY\nTHE NEXT WORD. SEE YOU SOON!', { 

@@ -13,7 +13,7 @@ export class inGameScene extends Phaser.Scene{
     init(data) {
         const elements = this.scene.get('elements');
         elements.drawLoadingScreen(this)
-
+        worldAudio.pause();
         elements.backgroundMusic(this,'play');
         // Recibe los datos pasados desde EscenaOrigen
         this.words = data.words || 'Desconocido';
@@ -834,6 +834,7 @@ export class inGameScene extends Phaser.Scene{
                     yoyo:true,
                     onComplete: () => {
                         const elements = this.scene.get('elements');
+                        worldAudio.play();
                         elements.mainModes(this);   
                     }
                 });
@@ -857,6 +858,7 @@ export class inGameScene extends Phaser.Scene{
                     onComplete: () => {
                         setTimeout(() => {
                             const elements = this.scene.get('elements');
+                            // worldAudio.play();
                             elements.mainModes(this); 
                         },3000)
                     }

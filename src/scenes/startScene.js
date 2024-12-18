@@ -12,9 +12,9 @@ export class startScene extends Phaser.Scene{
         const elements = this.scene.get('elements');//trae distintos elementos del juego
         const animotions = this.scene.get('animotions');//ejecuta animaciones genericas
         elements.getBackground(this,"bg_main");
+        elements.worldMusic(this,"play"); 
         //elements.showBtnConfig(this);
         //elements.showBtnMoney(this);
-
 
         //elemetnos unicos del main: maguito, boton start, titulo del juego
         this.add.image(mid_w, mid_h, 'mage').setOrigin(.5,1).setScale(default_scale);
