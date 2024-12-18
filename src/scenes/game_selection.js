@@ -13,7 +13,7 @@ export class selectGameScene extends Phaser.Scene{
     init(data) {//recibe data personalizada
         // Recibe los datos pasados desde EscenaOrigen
         this.levels = data.levels || 'Desconocido';
-        if(worldAudio.play === false ){ worldAudio.play(); }
+        if(worldAudio.isPlaying === false ){  worldAudio.play(); }
     }
 
     preload(){
