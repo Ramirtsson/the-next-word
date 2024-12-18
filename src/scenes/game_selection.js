@@ -17,6 +17,7 @@ export class selectGameScene extends Phaser.Scene{
     }
 
     preload(){
+        this.coin = this.sound.add('coin')
         const alphabt = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
         const numbers = ['1','2','3','4','5','6','7','8','9','0'];
         alphabt.forEach((el) => {
@@ -299,6 +300,7 @@ export class selectGameScene extends Phaser.Scene{
 
         btn_lv_back=this.add.image(mid_w_q, height-basic_padding, 'btn_return').setOrigin(.5,1).setScale(default_scale).setInteractive().on("pointerdown", () => {
                 // console.log(origin);
+                this.coin.play();
                 if (page>0) {
                     page--;
                     this.showLevelContainer(page)
@@ -308,6 +310,7 @@ export class selectGameScene extends Phaser.Scene{
 
         btn_lv_next=this.add.image(mid_w+mid_w_q, height-basic_padding, 'btn_return').setOrigin(.5,1).setScale(default_scale).setInteractive().on("pointerdown", () => {
                 // console.log(origin);
+                this.coin.play();
                 if (page<levelScreens.length-1) {
                     page++;
                     this.showLevelContainer(page);

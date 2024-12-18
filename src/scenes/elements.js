@@ -33,7 +33,6 @@ export class elements extends Phaser.Scene{
         scene.add.image(0+basic_padding, 0+basic_padding, 'btn_return').setOrigin(0,0).setScale(default_scale).setInteractive().on("pointerdown", () => {
             if(scene.backgroundMusic) scene.backgroundMusic.pause();
             if(worldAudio.play === false ){ worldAudio.play(); }
-            worldAudio.play();
             if(origin){
                 // console.log(origin);
                 scene.scene.start(originScreen[origin.length-1]);
