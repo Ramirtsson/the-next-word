@@ -8,6 +8,8 @@ import { selectModeScene } from "./scenes/modes.js";
 import { selectGameScene } from "./scenes/game_selection.js";
 import { inGameScene } from "./scenes/in_game.js";
 import { howToPlay } from "./scenes/howtoplay.js";
+import { scoreboardScene } from "./scenes/scoreboard.js";
+
 
 
 const game = new Phaser.Game({
@@ -29,8 +31,10 @@ const game = new Phaser.Game({
         debug: false,
       },
     },
-    scene: [bootLoader,preloadScene,startScene,selectModeScene,elements,animotions,selectGameScene,inGameScene,howToPlay],
+    scene: [bootLoader,preloadScene,startScene,selectModeScene,elements,animotions,selectGameScene,inGameScene,howToPlay,scoreboardScene],
 })
 
 game.scene.start('bootLoader');
 
+
+        

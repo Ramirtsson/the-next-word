@@ -54,7 +54,10 @@ export class elements extends Phaser.Scene{
 
 
     showBtnChallenges(scene){
-        scene.add.image((mid_w+mid_w_q), height, 'main_challenges').setOrigin(.5,1).setScale(default_scale*2);
+        scene.add.image((mid_w+mid_w_q), height, 'main_challenges').setOrigin(.5,1).setScale(default_scale*2).setInteractive().on("pointerdown", () => {
+            originScreen.push("selectModeScene");
+            scene.scene.start("scoreboardScene");
+        });
     }
 
     showBtnProfile(scene,x=null, y=null){

@@ -67,6 +67,10 @@ export class preloadScene extends Phaser.Scene{
             this.load.atlas("how_to_play_numbers_anim", "assets/game/how_to_play_numbers/how_to_play_numbers.png","assets/game/how_to_play_numbers/how_to_play_numbers.json");
             this.load.atlas("pet_1_anim", "assets/game/pet_1/pet_1.png","assets/game/pet_1/pet_1.json");
             this.load.image('btn_got_it', 'assets/game/btn_got_it.png');
+
+            //scoreboard
+            this.load.image('score_tab', 'assets/game/score_tab.png');
+            this.load.image('title_scoreboard', 'assets/game/title_scoreboard.png');
         
 
     }

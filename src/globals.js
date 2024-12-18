@@ -73,7 +73,7 @@ var exampleGameConfig={"generalSettings":{"resolution":{"height": 640,"width": 4
 
 let levels= [];
 
-
+var global_score=[{user: "traditional-low-18269",completed:"1/20",score:"12678"},{user: "traditional-low-18269",completed:"1/20",score:"12678"},{user: "traditional-low-18269",completed:"1/20",score:"12678"},{user: "traditional-low-18269",completed:"1/20",score:"12678"},{user: "traditional-low-18269",completed:"1/20",score:"12678"},{user: "traditional-low-18269",completed:"1/20",score:"12678"},{user: "traditional-low-18269",completed:"1/20",score:"12678"},{user: "traditional-low-18269",completed:"1/20",score:"12678"},{user: "traditional-low-18269",completed:"1/20",score:"12678"}]
 
 //level selection
 
