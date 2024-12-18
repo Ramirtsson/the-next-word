@@ -58,7 +58,7 @@ export class elements extends Phaser.Scene{
                 }).setOrigin(0.5,0.5).setDepth(5).setInteractive().on("pointerdown", () => {
                     originScreen=[];
                     scene.scene.start("selectModeScene");
-
+                    scene.backgroundMusic.pause();
                 })
 
             scene.noOption = scene.add.text(scene.yesOption.x, scene.yesOption.y + scene.yesOption.displayHeight*2, 
@@ -153,5 +153,12 @@ export class elements extends Phaser.Scene{
         });
     }
 
-  
+    backgroundMusic(scene,mode){
+        if(!scene.backgroundMusic) scene.backgroundMusic = this.sound.add('inGame').setLoop(true);
+        if(mode == 'play'){
+            scene.backgroundMusic.play();  
+        }else{
+            scene.backgroundMusic.pause();
+        }
+    }
 }

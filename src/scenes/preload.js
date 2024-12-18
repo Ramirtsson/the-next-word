@@ -73,6 +73,12 @@ export class preloadScene extends Phaser.Scene{
             this.load.atlas("pet_1_anim", "assets/game/pet_1/pet_1.png","assets/game/pet_1/pet_1.json");
             this.load.image('btn_got_it', 'assets/game/btn_got_it.png');
         
+            //Music     
+            this.load.audio('inGame',  'assets/music/background.wav');
+            this.load.audio('applause',  'assets/music/applause.ogg');
+            this.load.audio('coin',  'assets/music/coin.wav');
+            this.load.audio('cancel',  'assets/music/cancel.wav');
+            this.load.audio('success',  'assets/music/success.ogg');
 
     }
 
