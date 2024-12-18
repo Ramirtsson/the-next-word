@@ -13,6 +13,8 @@ export class inGameScene extends Phaser.Scene{
     init(data) {
         const elements = this.scene.get('elements');
         elements.drawLoadingScreen(this)
+
+        elements.backgroundMusic(this,'play');
         // Recibe los datos pasados desde EscenaOrigen
         this.words = data.words || 'Desconocido';
         this.lvl = data.lvl;
@@ -28,6 +30,11 @@ export class inGameScene extends Phaser.Scene{
         const alphabt = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
         const numbers = ['1','2','3','4','5','6','7','8','9','0'];
         
+        this.applauseSound = this.sound.add('applause');
+        this.coin = this.sound.add('coin')
+        this.cancel = this.sound.add('cancel')
+        this.success = this.sound.add('success')
+
         this.load.image('SPECIAL', 'assets/sprites/words/_blank.png');
         this.load.image('SPECIAL_alt', 'assets/sprites/words/_blank_alt.png');        
         alphabt.forEach((el) => {
@@ -178,7 +185,7 @@ export class inGameScene extends Phaser.Scene{
                             this.timer.destroy();
                             this.clearBoard('finish');
                             this.resultTime();
-
+                            
                             // console.log('¡El tiempo ha terminado!');
                             // Realizar alguna acción cuando termine el tiempo
                         }
@@ -702,11 +709,15 @@ export class inGameScene extends Phaser.Scene{
         if(Math.abs(remainingCount) >= Math.ceil(totalCount*0.75)){
             // console.log('Se ha conseguido');
             setTimeout(() => {
+                this.backgroundMusic.pause();
+                this.success.play();
                 this.finishGame('clear');
             },2000)
         }else{
             // console.log('AH! NO POS NADOTA');
             setTimeout(() => {
+                this.backgroundMusic.pause();
+                this.applauseSound.play();
                 this.finishGame('failed');
             },2000)
         }
@@ -882,6 +893,7 @@ export class inGameScene extends Phaser.Scene{
 
                         if(this.nextWord._displayed.has(chara) === true){
                             this.showScore('plus');
+                            this.coin.play();
                             foundLetter = true;
 
                             this.wordsImage[step].setTexture("SPECIAL_alt");
@@ -957,6 +969,7 @@ export class inGameScene extends Phaser.Scene{
                                 if(chara === uniqueLetters[idx] && idx == (this.buildResult.length-1)){
                                     
                                     this.showScore('plus');
+                                    this.coin.play();
                                     foundLetter = true;
                                     this.SPECIALWORD[idx].used = true;
                                     this.wordsImage[step].setTexture(chara+"_alt");
@@ -1007,7 +1020,7 @@ export class inGameScene extends Phaser.Scene{
                                         }else{
                                             this.showScore('wrong');
                                         }
-
+                                        this.cancel.play();
                                         
 
                                         this.tweens.add({
@@ -1051,6 +1064,7 @@ export class inGameScene extends Phaser.Scene{
                                 }else{
                                     this.showScore('wrong');
                                 }
+                                this.cancel.play();
                             }
                         });
                         this.buildResult = this.buildResult.substr(0, this.buildResult.length - 1);
