@@ -79,6 +79,7 @@ export class preloadScene extends Phaser.Scene{
             this.load.audio('coin',  'assets/music/coin.wav');
             this.load.audio('cancel',  'assets/music/cancel.wav');
             this.load.audio('success',  'assets/music/success.ogg');
+            this.load.audio('mainscreen',  'assets/music/mainscreen.wav');
 
     }
 
@@ -88,8 +89,8 @@ export class preloadScene extends Phaser.Scene{
         const elements = this.scene.get('elements');
         elements.getBackground(this,"bg_main");
         elements.showBtnReturn(this,originScreen);
-
         this.scene.start('startScene');
+        
 
     }
 
